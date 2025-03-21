@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Upcoming Events</h2>
+<% if (upcomingEvents.length > 0) { %>
+  <% upcomingEvents.forEach(event => { %>
+    <div class="event-card">
+      <img src="<%= event.poster %>" alt="<%= event.name %>">
+      <h3><%= event.name %></h3>
+      <p><%= event.shortDescription %></p>
+      <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+      <a href="/events/<%= event._id %>">View Details</a>
+    </div>
+  <% }) %>
+<% } else { %>
+  <p>No upcoming events available.</p>
+<% } %>
+
+<h2>Past Events</h2>
+<% if (pastEvents.length > 0) { %>
+  <% pastEvents.forEach(event => { %>
+    <div class="event-card past-event">
+      <img src="<%= event.poster %>" alt="<%= event.name %>">
+      <h3><%= event.name %></h3>
+      <p><%= event.shortDescription %></p>
+      <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+      <a href="/events/<%= event._id %>">View Details</a>
+    </div>
+  <% }) %>
+<% } else { %>
+  <p>No past events available.</p>
+<% } %>
+
+</body>
+</html>

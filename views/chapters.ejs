@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Chapters</title>
+    <link rel="stylesheet" href="/stylesheets/chapters.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>All Chapters</h2>
+
+        <% if (chapters.length === 0) { %>
+            <p class="no-chapters">No chapters available yet.</p>
+        <% } else { %>
+            <div class="chapters-list">
+                <% chapters.forEach(chapter => { %>
+                    <div class="chapter-card">
+                        <h3><%= chapter.name %></h3>
+                        <p class="description"><%= chapter.description %></p>
+                        <a href="/chapters/<%= chapter._id %>" class="details-btn">View Details</a>
+                    </div>
+                <% }); %>
+            </div>
+        <% } %>
+    </div>
+
+</body>
+</html>

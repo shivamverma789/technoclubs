@@ -1,0 +1,65 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.no-chapters {
+    color: #7f8c8d;
+    font-size: 18px;
+}
+
+.chapters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chapter-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.chapter-card h3 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.chapter-card p {
+    color: #34495e;
+    margin: 5px 0;
+}
+
+.details-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.details-btn:hover {
+    background: #2980b9;
+}

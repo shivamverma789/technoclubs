@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/events/create" method="POST">
+        <input type="text" name="name" placeholder="Event Name" required />
+        <input type="text" name="poster" placeholder="Event Poster URL" required />
+        <textarea name="shortDescription" placeholder="Short Description" required></textarea>
+        <textarea name="longDescription" placeholder="Long Description" required></textarea>
+        <input type="date" name="eventDate" required />
+        <input type="time" name="startTime" required />
+        <input type="time" name="endTime" required />
+        <input type="text" name="duration" placeholder="Duration" required />
+        <input type="text" name="venue" placeholder="Venue" required />
+        
+        <label>Speakers:</label>
+        <textarea name="speakers" placeholder='[{"name": "Speaker 1", "description": "Bio", "profilePhoto": "URL"}]' required></textarea>
+      
+        <input type="number" name="capacity" placeholder="Event Capacity" required />
+        
+        <label>Is Paid?</label>
+        <select name="isPaid" onchange="toggleFeeInput(this)">
+          <option value="false">No</option>
+          <option value="true">Yes</option>
+        </select>
+      
+        <input type="number" name="feeAmount" id="feeAmount" placeholder="Fee Amount" style="display: none;" />
+      
+        <button type="submit">Create Event</button>
+      </form>
+      
+      <script>
+        function toggleFeeInput(select) {
+          document.getElementById("feeAmount").style.display = select.value === "true" ? "block" : "none";
+        }
+      </script>
+      
+</body>
+</html>
