@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - <%= chapter.name %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/chapterDashboard.css">
+</head>
+
+<body>
+
+    <% include ./header.ejs %>
+
+        <div class="container">
+            <h1>Welcome to the Dashboard of <%= chapter.name %>
+            </h1>
+
+            <!-- Chapter Info -->
+            <div class="chapter-info">
+                <h2>Chapter Overview</h2>
+                <p><strong>Description:</strong>
+                    <%= chapter.description %>
+                </p>
+                <p><strong>President:</strong>
+                    <%= chapter.presidentName %>
+                </p>
+                <p><strong>Vice President:</strong>
+                    <%= chapter.vicePresidentName %>
+                </p>
+                <p><strong>Coordinator:</strong>
+                    <%= chapter.coordinatorName %>
+                </p>
+                <p><strong>Admin:</strong>
+                    <%= chapter.adminName %>
+                </p>
+
+                <div class="profile-image">
+                    <% if (chapter.profileImage) { %>
+                        <img src="/uploads/<%= chapter.profileImage %>" alt="Chapter Profile Image">
+                        <% } else { %>
+                            <p>No profile image uploaded.</p>
+                            <% } %>
+                </div>
+            </div>
+
+            <!-- Actions Section -->
+            <div class="actions">
+                <h2>Actions</h2>
+                <ul>
+                    <li><a href="/chapters/<%= chapter._id %>/teamMembers" class="btn">Manage Team Members</a></li>
+                    <li><a href="/chapters/<%= chapter._id %>/createEvent" class="btn">Create Event</a></li>
+                    <li><a href="/chapters/<%= chapter._id %>/events" class="btn">View Events</a></li>
+                    <li><a href="/chapters/<%= chapter._id %>/settings" class="btn">Settings</a></li>
+                </ul>
+            </div>
+
+            <!-- Recent Team Members Section -->
+            <div class="recent-team-members">
+                <h2>Recent Team Members</h2>
+                <% if (chapter.teamMembers.length===0) { %>
+                    <p>No team members added yet.</p>
+                    <% } else { %>
+                        <ul class="team-list">
+                            <% chapter.teamMembers.slice(0, 5).forEach((member, index)=> { %>
+                                <li>
+                                    <strong>#<%= index + 1 %></strong> - <%= member.name %> <br>
+                                        <strong>Email:</strong>
+                                        <%= member.email %>
+                                </li>
+                                <% }); %>
+                        </ul>
+                        <% } %>
+                            <a href="/chapters/<%= chapter._id %>/teamMembers" class="btn">View All Team Members</a>
+            </div>
+
+            <!-- Events Section -->
+            <div class="events">
+                <h2>Upcoming Events</h2>
+                <% if (chapter.events.length===0) { %>
+                    <p>No upcoming events.</p>
+                    <% } else { %>
+                        <ul class="event-list">
+                            <% chapter.events.forEach(event=> { %>
+                                <li>
+                                    <strong>
+                                        <%= event.title %>
+                                    </strong> - <%= event.date %> <br>
+                                        <p>
+                                            <%= event.description %>
+                                        </p>
+                                        <a href="/events/<%= event._id %>" class="btn">View Event</a>
+                                </li>
+                                <% }); %>
+                        </ul>
+                        <% } %>
+                            <a href="/chapters/<%= chapter._id %>/createEvent" class="btn">Create New Event</a>
+            </div>
+
+        </div>
+
+</body>
+
+</html>
