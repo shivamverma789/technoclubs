@@ -1,25 +1,47 @@
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/stylesheets/header.css">
 </head>
 
 <header>
     <div class="header-container">
-        <a href="/"> <!-- Added anchor tag to make the logo clickable -->
-            <img src="/uploads/logo.png" alt="Logo" class="logo">
+        <a href="/" class="logo">
+            <img src="/uploads/logo.jpg" alt="Techno Clubs Portal">
         </a>
 
-        <div class="header-icons">
-            <img src="/uploads/icons/notification.png" alt="Notifications">
-            <img src="/uploads/icons/gift.png" alt="Gifts">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/chapters">Communities</a></li>
+                <li><a href="/leaderboard">Leader Board</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
 
+        <div class="header-icons">
+            <!-- Notifications Icon -->
+            <a href="/notifications" class="icon-link">
+                <i class="fas fa-bell"></i>
+            </a>
+
+            <!-- Gifts/Rewards Icon -->
+            <a href="/rewards" class="icon-link">
+                <i class="fas fa-gift"></i>
+            </a>
+
+            <!-- User Profile Dropdown -->
             <% if (user) { %>
-                <!-- Show user icon when logged in -->
-                <a href="/profile">
-                    <img src="<%= user.profileImage ? '/uploads/profilePictures/' + user.profileImage : '/uploads/demoImages/userProfile.jpg' %>"
-                        alt="User Profile" class="user-icon">
-                </a>
+                <div class="user-profile-dropdown">
+                    <a href="javascript:void(0)" class="user-profile">
+                        <img src="<%= user.profileImage ? '/uploads/profilePictures/' + user.profileImage : '/uploads/demoImages/userProfile.jpg' %>"
+                            alt="User Profile" class="user-icon">
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="/dashboard/user">Profile</a>
+                        <a href="/auth/logout">Logout</a>
+                    </div>
+                </div>
                 <% } else { %>
-                    <!-- Show login button if not logged in -->
                     <a href="/login" class="btn login-btn">Login</a>
                     <% } %>
         </div>

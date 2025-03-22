@@ -1,64 +1,161 @@
+/* Theme Variables */
+:root {
+    --primary-bg: #0B0F1C;
+    --secondary-bg: #111827;
+    --text-light: #F3F4F6;
+    --text-muted: #9CA3AF;
+    --highlight: #3B82F6;
+    --accent: #FACC15;
+    --gradient-bg: linear-gradient(145deg, #3B82F6, #8B5CF6);
+    --button-bg: linear-gradient(145deg, #FACC15, #FFD700);
+    --card-bg: linear-gradient(145deg, #1E293B, #111827);
+    --shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f6f5e6;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.register-container {
-    background: #A9B5DF;
-    padding: 40px;
-    width: 450px;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.register-container h2 {
-    font-size: 22px;
-    margin-bottom: 30px;
-    text-align: left;
-}
-
-.form-group {
+/* Wrapper for centering the register form */
+.register-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 10px 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px;
+    flex-direction: column;
+    text-align: center;
 }
 
-label {
-    flex: 1;
-    font-weight: bold;
+/* Welcome Heading */
+.welcome-heading {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Register Card */
+.register-card {
+    background: var(--card-bg);
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+/* Title */
+h2 {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
     text-align: left;
 }
 
-input {
-    flex: 2;
+.form-group label {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 20px;
-    background: #FFFFFF;
-    font-size: 16px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--text-muted);
+    background-color: var(--secondary-bg);
+    color: var(--text-light);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--highlight);
     outline: none;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
 }
 
-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    background: #9789B5;
-    color: white;
+/* Button Styling */
+button[type="submit"] {
+    background: var(--button-bg);
+    color: var(--primary-bg);
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;
     border: none;
-    border-radius: 20px;
-    font-size: 16px;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 15px;
 }
 
-button:hover {
-    background: #4c214f;
+/* Button Hover */
+button[type="submit"]:hover {
+    background: var(--highlight);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Responsive Styling for larger screens */
+@media (max-width: 768px) {
+    .register-wrapper {
+        padding: 20px;
+    }
+
+    .register-card {
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .welcome-heading {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+        padding: 12px;
+    }
 }

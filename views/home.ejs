@@ -6,126 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techno Clubs Portal</title>
     <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 </head>
 
 <body>
 
     <!-- ✅ HEADER SECTION (FULLY FIXED) -->
-    <header>
-        <div class="header-container">
-            <!-- ✅ LOGO -->
-            <a href="/" class="logo">
-                <img src="/uploads/logo.png" alt="Techno Clubs Portal">
-            </a>
 
-            <!-- ✅ NAVIGATION MENU -->
-            <nav class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="/chapters">Communities</a></li>
-                    <li><a href="/leaderboard">Leader Board</a></li>
-                    <li><a href="/events">Events</a></li>
-                    <li><a href="/about">About</a></li>
-                </ul>
-            </nav>
+    <% include ./header.ejs %>
 
-            <!-- ✅ HEADER ICONS -->
-            <div class="header-icons">
-                <img src="/uploads/icons/notification.png" alt="Notifications" class="header-icon">
-                <img src="/uploads/icons/gift.png" alt="Gifts" class="header-icon">
 
-                <% if (user) { %>
-                    <a href="/profile">
-                        <img src="<%= user.profileImage ? '/uploads/profilePictures/' + user.profileImage : '/uploads/demoImages/userProfile.jpg' %>"
-                            alt="User Profile" class="user-icon">
-                    </a>
-                    <% } else { %>
-                        <a href="/login" class="btn login-btn">Login</a>
-                        <% } %>
-            </div>
-        </div>
-    </header>
+        <!-- ✅ MAIN CONTENT -->
+        <main>
 
-    <!-- ✅ MAIN CONTENT -->
-    <main>
-
-        <!-- ✅ HERO SECTION -->
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Techno Club</h1>
-                <p>Join our community to explore the latest in technology, innovation, and collaboration.</p>
-                <a href="/chapters" class="btn cta-btn">Explore Communities</a>
-            </div>
-            <div class="hero-image">
-                <img src="/uploads/demoImages/tech_club_banner.jpg" alt="Techno Club">
-            </div>
-        </section>
-
-        <!-- ✅ COMMUNITIES SECTION -->
-        <section id="chapters" class="chapters-section">
-            <h2>Our Community</h2>
-            <div class="chapters-container">
-                <% chapters.forEach(chapter=> { %>
-                    <a href="/chapters/<%= chapter._id %>" class="chapter-card">
-                        <img src="/uploads/chapterProfiles/<%= chapter.profileImage %>" alt="<%= chapter.name %>">
-                        <h3>
-                            <%= chapter.name %>
-                        </h3>
-                    </a>
-                    <% }); %>
-            </div>
-        </section>
-
-        <!-- ✅ EVENTS SECTION -->
-        <section id="events" class="events-section">
-            <h2>Upcoming Events</h2>
-            <div class="events-container">
-                <% if (upcomingEvents.length===0) { %>
-                    <p>No upcoming events.</p>
-                    <% } else { %>
-                        <% upcomingEvents.forEach(event=> { %>
-                            <div class="event-card" onclick="redirectToEvent('<%= event._id %>')">
-                                <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
-                            </div>
-                            <% }); %>
-                                <% } %>
-            </div>
-        </section>
-
-        <!-- ✅ CLUB DYNAMICS SECTION -->
-        <section id="club-dynamics" class="club-dynamics">
-            <h2>Club Dynamics</h2>
-            <div class="cd-container">
-                <div class="cd-member">
-                    <img src="/uploads/demoImages/president.jpg" alt="President">
-                    <p class="title">President</p>
-                    <p class="name">Nick Jacob</p>
+            <!-- ✅ HERO SECTION -->
+            <section class="hero">
+                <div class="hero-text">
+                    <h1>Techno Club</h1>
+                    <p>Join our community to explore the latest in technology, innovation, and collaboration.</p>
+                    <a href="/chapters" class="btn cta-btn">Explore Communities</a>
                 </div>
-                <div class="cd-member">
-                    <img src="/uploads/demoImages/vice_president.jpg" alt="Vice President">
-                    <p class="title">Vice President</p>
-                    <p class="name">Kailey Mayre</p>
+                <div class="hero-image">
+                    <img src="/uploads/demoImages/tech_club_banner.jpg" alt="Techno Club">
                 </div>
-                <div class="cd-member">
-                    <img src="/uploads/demoImages/club_coordinator.jpg" alt="Club Coordinator">
-                    <p class="title">Club Coordinator</p>
-                    <p class="name">Ben Doppler</p>
+            </section>
+
+            <!-- ✅ COMMUNITIES SECTION -->
+            <section id="chapters" class="chapters-section">
+                <h2>Our Community</h2>
+                <div class="chapters-container">
+                    <% chapters.forEach(chapter=> { %>
+                        <a href="/chapters/<%= chapter._id %>" class="chapter-card">
+                            <img src="/uploads/chapterProfiles/<%= chapter.profileImage %>" alt="<%= chapter.name %>">
+                            <h3>
+                                <%= chapter.name %>
+                            </h3>
+                        </a>
+                        <% }); %>
                 </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+            <!-- ✅ EVENTS SECTION -->
+            <section id="events" class="events-section">
+                <h2>Upcoming Events</h2>
+                <div class="events-container">
+                    <% if (upcomingEvents.length===0) { %>
+                        <p>No upcoming events.</p>
+                        <% } else { %>
+                            <% upcomingEvents.forEach(event=> { %>
+                                <div class="event-card" onclick="redirectToEvent('<%= event._id %>')">
+                                    <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+                                </div>
+                                <% }); %>
+                                    <% } %>
+                </div>
+            </section>
 
-    <!-- ✅ FOOTER SECTION -->
-    <footer>
-        <p>&copy; 2025 Techno Clubs Portal. All rights reserved.</p>
-    </footer>
+            <!-- ✅ CLUB DYNAMICS SECTION -->
+            <section id="club-dynamics" class="club-dynamics">
+                <h2>Club Dynamics</h2>
+                <div class="cd-container">
+                    <div class="cd-member">
+                        <img src="/uploads/demoImages/president.jpg" alt="President">
+                        <p class="title">President</p>
+                        <p class="name">Nick Jacob</p>
+                    </div>
+                    <div class="cd-member">
+                        <img src="/uploads/demoImages/vice_president.jpg" alt="Vice President">
+                        <p class="title">Vice President</p>
+                        <p class="name">Kailey Mayre</p>
+                    </div>
+                    <div class="cd-member">
+                        <img src="/uploads/demoImages/club_coordinator.jpg" alt="Club Coordinator">
+                        <p class="title">Club Coordinator</p>
+                        <p class="name">Ben Doppler</p>
+                    </div>
+                </div>
+            </section>
 
-    <!-- ✅ JAVASCRIPT -->
-    <script>
-        function redirectToEvent(eventId) {
-            window.location.href = `/events/${eventId}`;
-        }
-    </script>
+        </main>
+
+        <!-- ✅ FOOTER SECTION -->
+        <footer>
+            <p>&copy; 2025 Techno Clubs Portal. All rights reserved.</p>
+        </footer>
+
+        <!-- ✅ JAVASCRIPT -->
+        <script>
+            function redirectToEvent(eventId) {
+                window.location.href = `/events/${eventId}`;
+            }
+        </script>
 
 </body>
 

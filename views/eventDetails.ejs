@@ -93,23 +93,22 @@
             </div>
             <% } else { %>
                 <p>No speakers assigned for this event.</p>
-            <% } %>
-                
-            <h2>Registered Users</h2>
-            <p class="registered-users-count">Total Registered: <%= event.registeredUsers.length %></p>
+                <% } %>
 
+                    <h2>Registered Users</h2>
+                    <p class="registered-users-count">Total Registered: <%= event.registeredUsers.length %>
+                    </p>
 
-            <!-- Registration Button -->
-            <% if (showRegisterButton) { %>
-                <form action="/events/register/<%= event._id %>" method="POST">
-                  <button type="submit">Register</button>
-                </form>
-              <% } else if (isRegistered) { %>
-                
-                <p>You have already registered for this event.</p>
-              <% } %>
-        </div>
+                    <!-- Registration Button -->
+                    <% if (showRegisterButton) { %>
+                        <form action="/events/register/<%= event._id %>" method="POST">
+                            <button type="submit" class="register-btn">Register</button>
+                        </form>
+                        <% } else if (isRegistered) { %>
+                            <p>You have already registered for this event.</p>
+                            <% } %>
     </div>
+
 </body>
 
 </html>

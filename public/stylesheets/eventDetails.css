@@ -1,178 +1,204 @@
-/* General Reset */
-* {
+/* Theme Variables */
+:root {
+    --primary-bg: #0B0F1C;
+    --secondary-bg: #111827;
+    --text-light: #F3F4F6;
+    --text-muted: #9CA3AF;
+    --highlight: #3B82F6;
+    --accent: #FACC15;
+    --gradient-bg: linear-gradient(145deg, #3B82F6, #8B5CF6);
+    --button-bg: linear-gradient(145deg, #FACC15, #FFD700);
+    --card-bg: linear-gradient(145deg, #1E293B, #111827);
+    --shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-body {
-    background-color: #f6f5e6;
-    /* Light cream background */
-    color: #333;
-    padding: 20px;
-}
-
-/* Event Container */
 .event-container {
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: white;
+    width: 80%;
+    margin: 50px auto;
     padding: 20px;
-    border-radius: 15px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
 }
 
-/* Event Header */
-.event-header {
-    text-align: center;
+/* Title Styles */
+h1 {
+    color: var(--highlight);
+    font-size: 3em;
+    margin-bottom: 20px;
 }
 
-.event-header img {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Event Content Layout */
-.event-content {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-/* Text Content - Left Side */
-.event-details {
-    flex: 1;
-    min-width: 300px;
-}
-
-/* Image - Right Side */
-.event-image {
-    max-width: 250px;
-}
-
-.event-image img {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Event Title */
-.event-details h1 {
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #575C89;
-    /* Deep blue shade */
-}
-
-/* Event Details */
-.event-details p {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 10px;
-}
-
-.event-details strong {
-    font-weight: bold;
-    color: #444;
-}
-
-/* Speaker Section */
-.speaker-section {
+h2 {
+    color: var(--highlight);
+    font-size: 2em;
     margin-top: 30px;
 }
 
-.speaker-section h2 {
-    text-align: left;
-    color: #575C89;
-    margin-bottom: 10px;
-}
-
-
-/* Speaker Cards */
-.speaker-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
-    gap: 15px;
-}
-
-.speaker-card {
-    display: flex;
-    align-items: center;
-    background: #d0d6f0;
-    /* Light blue */
-    padding: 15px;
-    border-radius: 12px;
-    width: 280px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.speaker-card img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-    border: 3px solid #7886C7;
-    /* Blue border */
-}
-
-.speaker-info h3 {
-    font-size: 18px;
-    color: #222;
-    margin: 0;
-}
-
-/* Registration Button */
-.register-btn {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 20px auto 0;
-    padding: 12px;
-    background: #9789B5;
-    /* Purple shade */
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 16px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
-        -5px -5px 10px rgba(255, 255, 255, 0.8);
-}
-
-.register-btn:hover {
-    background: #4c214f;
-    /* Darker purple */
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 10px 0;
 }
 
 /* Back Button */
 .back-button {
-    width: 18%;
-    display: inline-block;
-    margin-bottom: 15px;
-    padding: 8px 15px;
-    background-color: #9789B5;
-    /* Deep blue */
-    color: white;
+    color: var(--highlight);
+    font-size: 1.2em;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 8px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .back-button:hover {
-    background-color: #4c214f;
-    /* Darker blue */
+    text-decoration: underline;
+}
+
+/* Event Content Section */
+.event-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Event Details */
+.event-details {
+    flex: 1;
+    padding: 20px;
+}
+
+.event-details a {
+    color: var(--highlight);
+}
+
+.event-details a:hover {
+    text-decoration: underline;
+}
+
+/* Event Poster */
+.event-image {
+    flex: 1;
+    text-align: center;
+}
+
+.event-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+/* Speaker Section */
+.speaker-section {
+    margin-top: 40px;
+}
+
+.speaker-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.speaker-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    color: var(--text-light);
+    transition: transform 0.3s ease;
+}
+
+.speaker-card:hover {
+    transform: translateY(-10px);
+}
+
+.speaker-photo {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.speaker-info h3 {
+    color: var(--highlight);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.speaker-info p {
+    color: var(--text-muted);
+    font-size: 1em;
+}
+
+/* Registered Users Section */
+.registered-users {
+    margin-top: 30px;
+}
+
+.registered-users-count {
+    font-size: 1.2em;
+}
+
+/* Registration Button */
+.register-btn {
+    background: var(--button-bg);
+    color: var(--primary-bg);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+.register-btn:hover {
+    background: var(--highlight);
+    color: var(--text-light);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .event-container {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .event-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .event-details {
+        padding: 0;
+        text-align: center;
+    }
+
+    .event-image img {
+        width: 80%;
+    }
+
+    .speaker-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .speaker-card {
+        width: 90%;
+    }
+
+    .register-btn {
+        width: 100%;
+    }
 }

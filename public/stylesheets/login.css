@@ -1,55 +1,118 @@
+/* Theme Variables */
+:root {
+    --primary-bg: #0B0F1C;
+    --secondary-bg: #111827;
+    --text-light: #F3F4F6;
+    --text-muted: #9CA3AF;
+    --highlight: #3B82F6;
+    --accent: #FACC15;
+    --button-bg: linear-gradient(145deg, #FACC15, #FFD700);
+    --card-bg: linear-gradient(145deg, #1E293B, #111827);
+    --shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f6f5e6;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.login-card {
-    background: #A9B5DF;
+/* Wrapper for centering the login form */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
     padding: 40px;
-    width: 350px;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--gradient-bg);
+    flex-direction: column;
     text-align: center;
 }
 
-.login-card h2 {
-    color: #333;
-    font-size: 22px;
+/* Welcome Heading */
+.welcome-heading {
+    font-size: 2.5rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Login Card */
+.login-card {
+    background: var(--card-bg);
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+/* Title */
+h2 {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Input Fields */
+.input-group {
     margin-bottom: 20px;
 }
 
-input {
-    width: 90%;
-    padding: 14px;
-    margin: 15px auto;
-    display: block;
-    border: none;
-    border-radius: 20px;
-    background: #D9D9D9;
-    font-size: 16px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-    outline: none;
-    text-align: left;
-}
-
-button {
+input[type="email"],
+input[type="password"] {
     width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    background: #9789B5;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--text-muted);
+    background-color: var(--secondary-bg);
+    color: var(--text-light);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
 }
 
-button:hover {
-    background: #4c214f;
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--highlight);
+    outline: none;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+/* Button Styling */
+button[type="submit"] {
+    background: var(--button-bg);
+    color: var(--primary-bg);
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+/* Button Hover */
+button[type="submit"]:hover {
+    background: var(--highlight);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.2);
 }
