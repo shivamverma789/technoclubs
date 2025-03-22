@@ -67,28 +67,29 @@ module.exports = router;
 // ✅ GET Chapter Details Page
 router.get("/:id", async (req, res) => {
   try {
-    const chapter = await Chapter.findById(req.params.id)
-      .populate("president vicePresident coordinator admin teamMembers")
-      .populate({
-        path: "events",
-        options: { sort: { eventDate: 1 } }, // Sort events by date
-      });
+    const event = await Event.findById(req.params.id)
+      .populate("chapterId speakers registeredUsers"); // Populate chapterId to get chapter details
 
-    if (!chapter) {
-      req.flash("error_msg", "Chapter not found.");
-      return res.redirect("/chapters");
+    if (!event) {
+      req.flash("error_msg", "Event not found.");
+      return res.redirect("/events");
     }
 
-    const currentDate = new Date();
-    const upcomingEvents = chapter.events.filter(event => new Date(event.eventDate) >= currentDate);
-    const pastEvents = chapter.events.filter(event => new Date(event.eventDate) < currentDate);
+    console.log("Fetched Event:", event);  // Debugging log
+    console.log("Fetched Chapter:", event.chapterId);  // Ensure chapter is populated
 
-    res.render("chapterDetails", { chapter, upcomingEvents, pastEvents });
+    const speaker = event.speakers[0] || {}; // Ensure at least an empty object
+    const isRegistered = req.user 
+      ? event.registeredUsers.some(user => user._id.toString() === req.user._id.toString()) 
+      : false;
+
+    res.render("eventDetails", { event, chapter: event.chapterId, speaker, isRegistered });
   } catch (error) {
-    console.error("Error fetching chapter details:", error);
+    console.error("Error fetching event details:", error);
     res.status(500).send("Server Error");
   }
 });
+
 
 //view chapter
 router.get("/:chapterId/team", ensureAuthenticated, async (req, res) => {
