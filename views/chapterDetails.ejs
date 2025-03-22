@@ -34,7 +34,7 @@
             <% } else { %>
                 <% upcomingEvents.forEach(event => { %>
                     <div class="event-card">
-                        <img src="/<%= event.poster %>" alt="<%= event.name %>" class="event-poster">
+                        <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>" class="event-poster">
                         <h4><%= event.name %></h4>
                         <p><%= event.shortDescription %></p>
                         <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
