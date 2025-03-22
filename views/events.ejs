@@ -9,9 +9,7 @@
 </head>
 
 <body>
-
   <h2>Events</h2>
-
   <!-- Search Bar -->
   <div class="search-container">
     <input type="text" class="search-box" placeholder="Search Events">
@@ -28,7 +26,7 @@
     <% if (upcomingEvents.length> 0) { %>
       <% upcomingEvents.forEach(event=> { %>
         <div class="event-card">
-          <img src="<%= event.poster %>" alt="<%= event.name %>">
+          <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
           <h3>
             <%= event.name %>
           </h3>
@@ -54,7 +52,7 @@
     <% if (pastEvents.length> 0) { %>
       <% pastEvents.forEach(event=> { %>
         <div class="event-card">
-          <img src="<%= event.poster %>" alt="<%= event.name %>">
+          <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
           <h3>
             <%= event.name %>
           </h3>
@@ -84,30 +82,6 @@
       event.target.classList.add("active");
     }
   </script>
-
-        <!-- Past Events -->
-        <section>
-            <h2>Past Events</h2>
-            <div class="events-container">
-                <% if (pastEvents.length === 0) { %>
-                    <p>No past events available.</p>
-                <% } else { %>
-                    <% pastEvents.forEach(event => { %>
-                        <div class="event-card">
-                            <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
-                            <div class="event-info">
-                                <h3><%= event.name %></h3>
-                                <p><%= event.shortDescription %></p>
-                                <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
-                                <p><strong>Venue:</strong> <%= event.venue %></p>
-                                <a href="/events/<%= event._id %>" class="btn">View Details</a>
-                            </div>
-                        </div>
-                    <% }); %>
-                <% } %>
-            </div>
-        </section>
-    </div>
 </body>
 
 </html>

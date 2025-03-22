@@ -1,91 +1,172 @@
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 50%;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-h2 {
-    text-align: center;
-}
-
-form {
+    font-family: 'Arial', sans-serif;
+    background-color: #f6f5e6;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
-label {
-    margin-top: 10px;
-    font-weight: bold;
+/* Form Styling */
+form {
+    width: 60%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-input, textarea, select {
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Section Styling */
+.section {
+    background: #A9B5DF;
+    padding: 20px;
+    border-radius: 15px;
     width: 100%;
+    box-sizing: border-box;
 }
 
+/* Section Titles */
+.section h3 {
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Input Fields */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    background: #FFFFFF;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    outline: none;
+    display: block;
+    margin-top: 5px;
+    box-sizing: border-box;
+
+}
+
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: #777;
+    opacity: 1;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Buttons */
 button {
-    margin-top: 15px;
-    padding: 10px;
-    background: #007BFF;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #9789B5;
     color: white;
     border: none;
+    border-radius: 10px;
+    font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background: #0056b3;
+    background: #4c214f;
 }
 
-#addSpeaker {
-    background: #28a745;
-}
-
-#addSpeaker:hover {
-    background: #218838;
-}
-
-.removeSpeaker {
-    background: #dc3545;
-    color: white;
-    padding: 5px;
-    border: none;
-    margin-top: 5px;
+/* Custom File Upload Box */
+.file-upload {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    border: 2px dashed #777;
+    border-radius: 10px;
+    text-align: center;
+    background: #f9f9f9;
     cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
 }
 
-.removeSpeaker:hover {
-    background: #c82333;
+.file-upload:hover {
+    background: #ececec;
 }
 
-.success {
-    color: green;
-    text-align: center;
+/* Upload Icon */
+.upload-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    opacity: 60%;
 }
 
-.error {
-    color: red;
-    text-align: center;
+/* Placeholder Text */
+.file-upload p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
 }
 
-.speaker {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd;
-    padding: 10px;
+.file-upload span {
+    font-weight: bold;
+    color: #4c214f;
+}
+
+/* Hide the default file input */
+input[type="file"] {
+    display: none;
+}
+
+/* Display Selected File Name */
+#fileName {
+    font-size: 14px;
+    color: #333;
     margin-top: 10px;
-    border-radius: 5px;
+}
+
+/* Date Input Field Styling */
+input[type="date"] {
+    color: #333;
+    /* Match text color */
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 15px;
+    background: #FFFFFF;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    outline: none;
+    display: block;
+    margin-top: 5px;
+    box-sizing: border-box;
+    appearance: none;
+    /* Removes default browser styling */
+}
+
+/* Placeholder & Selected Date Text Color */
+input[type="date"]::placeholder {
+    color: #777;
+    /* Same as other placeholders */
+    opacity: 1;
+}
+
+/* Override default styles on some browsers */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5);
+    /* Adjusts icon color */
+    cursor: pointer;
 }
