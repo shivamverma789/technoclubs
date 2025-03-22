@@ -3,38 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Events</title>
+    <link rel="stylesheet" href="/stylesheets/events.css">
 </head>
 <body>
-    <h2>Upcoming Events</h2>
-<% if (upcomingEvents.length > 0) { %>
-  <% upcomingEvents.forEach(event => { %>
-    <div class="event-card">
-      <img src="<%= event.poster %>" alt="<%= event.name %>">
-      <h3><%= event.name %></h3>
-      <p><%= event.shortDescription %></p>
-      <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
-      <a href="/events/<%= event._id %>">View Details</a>
-    </div>
-  <% }) %>
-<% } else { %>
-  <p>No upcoming events available.</p>
-<% } %>
+    <div class="container">
+        <h1>Events</h1>
 
-<h2>Past Events</h2>
-<% if (pastEvents.length > 0) { %>
-  <% pastEvents.forEach(event => { %>
-    <div class="event-card past-event">
-      <img src="<%= event.poster %>" alt="<%= event.name %>">
-      <h3><%= event.name %></h3>
-      <p><%= event.shortDescription %></p>
-      <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
-      <a href="/events/<%= event._id %>">View Details</a>
-    </div>
-  <% }) %>
-<% } else { %>
-  <p>No past events available.</p>
-<% } %>
+        <!-- Upcoming Events -->
+        <section>
+            <h2>Upcoming Events</h2>
+            <div class="events-container">
+                <% if (upcomingEvents.length === 0) { %>
+                    <p>No upcoming events available.</p>
+                <% } else { %>
+                    <% upcomingEvents.forEach(event => { %>
+                        <div class="event-card">
+                            <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+                            <div class="event-info">
+                                <h3><%= event.name %></h3>
+                                <p><%= event.shortDescription %></p>
+                                <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+                                <p><strong>Venue:</strong> <%= event.venue %></p>
+                                <a href="/events/<%= event._id %>" class="btn">View Details</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+        </section>
 
+        <!-- Past Events -->
+        <section>
+            <h2>Past Events</h2>
+            <div class="events-container">
+                <% if (pastEvents.length === 0) { %>
+                    <p>No past events available.</p>
+                <% } else { %>
+                    <% pastEvents.forEach(event => { %>
+                        <div class="event-card">
+                            <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+                            <div class="event-info">
+                                <h3><%= event.name %></h3>
+                                <p><%= event.shortDescription %></p>
+                                <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+                                <p><strong>Venue:</strong> <%= event.venue %></p>
+                                <a href="/events/<%= event._id %>" class="btn">View Details</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+        </section>
+    </div>
 </body>
 </html>

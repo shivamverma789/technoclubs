@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+.event-container {
+    width: 60%;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Event Poster Styling */
+.event-header img {
+    width: 300px;  /* Reduced size */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;  /* Centers the image */
+}
+
+/* General Event Info */
+.event-content {
+    padding: 20px;
+    text-align: left;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.description {
+    font-size: 1.1em;
+    color: #555;
+    text-align: justify;
+}
+
+/* Speaker Section */
+.speaker-card {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.speaker-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.speaker-info h3 {
+    margin: 0;
+    color: #333;
+}
+
+/* Registered Users */
+.registered-users-count {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Register Button */
+.register-btn {
+    display: block;
+    width: 100%;
+    background: #28a745;
+    color: white;
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.register-btn:hover {
+    background: #218838;
+}
+
+.registered-message {
+    color: #007bff;
+    font-weight: bold;
+    text-align: center;
+}

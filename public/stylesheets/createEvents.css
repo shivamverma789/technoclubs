@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 50%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#addSpeaker {
+    background: #28a745;
+}
+
+#addSpeaker:hover {
+    background: #218838;
+}
+
+.removeSpeaker {
+    background: #dc3545;
+    color: white;
+    padding: 5px;
+    border: none;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.removeSpeaker:hover {
+    background: #c82333;
+}
+
+.success {
+    color: green;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.speaker {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}

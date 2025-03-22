@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= event.name %> - Event Details</title>
+    <link rel="stylesheet" href="/stylesheets/eventDetails.css">
+</head>
+<body>
+    <div class="event-container">
+        <!-- Event Poster -->
+        <div class="event-header">
+            <% if (event.poster) { %>
+                <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+            <% } else { %>
+                <img src="/images/default-event.png" alt="Default Event Poster">
+            <% } %>
+        </div>
+
+        <div class="event-content">
+            <h1><%= event.name %></h1>
+            <p class="description"><%= event.longDescription %></p>
+
+            <!-- Chapter Details -->
+            <% if (event.chapterId) { %>
+                <p><strong>Chapter:</strong> 
+                    <a href="/chapters/<%= event.chapterId._id %>"><%= event.chapterId.name %></a>
+                </p>
+            <% } else { %>
+                <p><strong>Chapter:</strong> Not assigned</p>
+            <% } %>
+
+            <!-- Event Details -->
+            <p><strong>Date:</strong> <%= event.eventDate ? event.eventDate.toDateString() : "Not specified" %></p>
+            <p><strong>Time:</strong> <%= event.startTime %> - <%= event.endTime %> (<%= event.duration %> hrs)</p>
+            <p><strong>Venue:</strong> <%= event.venue || "Not specified" %></p>
+            <p><strong>Capacity:</strong> <%= event.eventCapacity || "Unlimited" %></p>
+            <p><strong>Price:</strong> <%= event.isPaid ? "Paid" : "Free" %></p>
+
+            <!-- Speaker Details -->
+            <% if (event.speakers.length > 0) { %>
+                <h2>Speaker Details</h2>
+                <% event.speakers.forEach(speaker => { %>
+                    <div class="speaker-card">
+                        <% if (speaker.profilePhoto) { %>
+                            <img src="/uploads/speakerProfiles/<%= speaker.profilePhoto %>" alt="<%= speaker.name %>">
+                        <% } else { %>
+                            <img src="/images/default-speaker.png" alt="Default Speaker">
+                        <% } %>
+                        <div class="speaker-info">
+                            <h3><%= speaker.name %></h3>
+                            <p><%= speaker.description || "No description available" %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No speakers assigned for this event.</p>
+            <% } %>
+
+            <h2>Registered Users</h2>
+            <p class="registered-users-count">Total Registered: <%= event.registeredUsers.length %></p>
+
+
+            <!-- Registration Button -->
+            <% if (!isRegistered) { %>
+                <form action="/events/register/<%= event._id %>" method="POST">
+                    <button type="submit" class="register-btn">Register for Event</button>
+                </form>
+            <% } else { %>
+                <p class="registered-message">You are already registered for this event.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

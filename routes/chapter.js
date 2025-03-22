@@ -78,17 +78,29 @@ router.post("/create", ensureRole("superadmin"), async (req, res) => {
 // ✅ GET Chapter Details Page
 router.get("/:id", async (req, res) => {
   try {
-      const chapter = await Chapter.findById(req.params.id).populate("president vicePresident coordinator teamMembers");
-      if (!chapter) {
-          return res.status(404).send("Chapter not found");
-      }
+    const chapter = await Chapter.findById(req.params.id)
+      .populate("president vicePresident coordinator admin teamMembers")
+      .populate({
+        path: "events",
+        options: { sort: { eventDate: 1 } }, // Sort events by date
+      });
 
-      res.render("chapterDetails", { chapter });
+    if (!chapter) {
+      req.flash("error_msg", "Chapter not found.");
+      return res.redirect("/chapters");
+    }
+
+    const currentDate = new Date();
+    const upcomingEvents = chapter.events.filter(event => new Date(event.eventDate) >= currentDate);
+    const pastEvents = chapter.events.filter(event => new Date(event.eventDate) < currentDate);
+
+    res.render("chapterDetails", { chapter, upcomingEvents, pastEvents });
   } catch (error) {
-      console.error("Error fetching chapter details:", error);
-      res.status(500).send("Internal Server Error");
+    console.error("Error fetching chapter details:", error);
+    res.status(500).send("Server Error");
   }
 });
+
 
 // ✅ GET Edit Chapter Page (Only Super Admin)
 router.get("/:id/edit", ensureRole("superadmin"), async (req, res) => {

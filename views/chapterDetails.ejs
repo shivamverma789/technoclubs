@@ -3,39 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= chapter.name %> - Chapter Details</title>
+    <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/chapterDetails.css">
 </head>
 <body>
-
-    <div class="container">
-        <h2><%= chapter.name %></h2>
-        <p class="description"><%= chapter.description %></p>
-
-        <div class="team-section">
-            <h3>Chapter Team</h3>
-            <ul>
-                <li><strong>President:</strong> <%= chapter.president ? chapter.president.name : "Not Assigned" %></li>
-                <li><strong>Vice President:</strong> <%= chapter.vicePresident ? chapter.vicePresident.name : "Not Assigned" %></li>
-                <li><strong>Coordinator:</strong> <%= chapter.coordinator ? chapter.coordinator.name : "Not Assigned" %></li>
-            </ul>
+    <div class="chapter-container">
+        <h1><%= chapter.name %></h1>
+        <p><%= chapter.description %></p>
+      
+        <h3>Team</h3>
+        <ul>
+          <li><strong>President:</strong> <%= chapter.president.name %></li>
+          <li><strong>Vice President:</strong> <%= chapter.vicePresident.name %></li>
+          <li><strong>Coordinator:</strong> <%= chapter.coordinator.name %></li>
+          <li><strong>Admin:</strong> <%= chapter.admin.name %></li>
+        </ul>
+      
+        <h3>Upcoming Events</h3>
+        <div class="events-container">
+          <% if (upcomingEvents.length === 0) { %>
+            <p>No upcoming events.</p>
+          <% } else { %>
+            <% upcomingEvents.forEach(event => { %>
+              <div class="event-card">
+                <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+                <h4><%= event.name %></h4>
+                <p><%= event.shortDescription %></p>
+                <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+                <a href="/events/<%= event._id %>" class="btn">View Details</a>
+              </div>
+            <% }); %>
+          <% } %>
         </div>
-
-        <div class="members-section">
-            <h3>Team Members</h3>
-            <% if (chapter.teamMembers.length > 0) { %>
-                <ul>
-                    <% chapter.teamMembers.forEach(member => { %>
-                        <li><%= member.name %></li>
-                    <% }); %>
-                </ul>
-            <% } else { %>
-                <p>No team members yet.</p>
-            <% } %>
+      
+        <h3>Past Events</h3>
+        <div class="events-container">
+          <% if (pastEvents.length === 0) { %>
+            <p>No past events.</p>
+          <% } else { %>
+            <% pastEvents.forEach(event => { %>
+              <div class="event-card">
+                <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+                <h4><%= event.name %></h4>
+                <p><%= event.shortDescription %></p>
+                <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+                <a href="/events/<%= event._id %>" class="btn">View Details</a>
+              </div>
+            <% }); %>
+          <% } %>
         </div>
-
-        <a href="/chapters" class="back-btn">Back to Chapters</a>
-    </div>
-
+      </div>
+      
 </body>
 </html>

@@ -2,6 +2,8 @@ const express = require("express");
 const { ensureRole, ensureAuthenticated } = require("../middleware/auth");
 const Event = require("../models/Event");
 const Chapter = require("../models/Chapter");
+const multer = require("multer");
+const upload = require("../middleware/multer"); // Import Multer middleware
 
 const router = express.Router();
 
@@ -21,7 +23,7 @@ router.get("/create", ensureRole("chapteradmin"), async (req, res) => {
 });
 
 // ✅ POST Create Event (Only Chapter Admin)
-router.post("/create", ensureRole("chapteradmin"), async (req, res) => {
+router.post("/create", ensureRole("chapteradmin"), upload, async (req, res) => {
   try {
     const chapter = await Chapter.findOne({ _id: req.user.chapterId });
     if (!chapter) {
@@ -31,7 +33,43 @@ router.post("/create", ensureRole("chapteradmin"), async (req, res) => {
 
     const {
       name,
-      poster,
+      shortDescription,
+      longDescription,
+      eventDate,
+      startTime,
+      endTime,
+      duration,
+      venue,
+      capacity,
+      isPaid,
+      feeAmount,
+      speakerName,
+      speakerDescription,
+    } = req.body;
+
+    // Handle Speaker Details (Multiple Speakers)
+    const speakers = [];
+    if (Array.isArray(speakerName)) {
+      for (let i = 0; i < speakerName.length; i++) {
+        speakers.push({
+          name: speakerName[i],
+          description: speakerDescription[i],
+          profilePhoto: req.files[`speakerProfile[${i}]`] ? req.files[`speakerProfile[${i}]`][0].filename : null,
+        });
+      }
+    } else if (speakerName) {
+      // If only one speaker is provided
+      speakers.push({
+        name: speakerName,
+        description: speakerDescription,
+        profilePhoto: req.files["speakerProfile"] ? req.files["speakerProfile"][0].filename : null,
+      });
+    }
+
+    // Create Event Object
+    const newEvent = new Event({
+      name,
+      poster: req.files["poster"] ? req.files["poster"][0].filename : null,
       shortDescription,
       longDescription,
       eventDate,
@@ -41,30 +79,17 @@ router.post("/create", ensureRole("chapteradmin"), async (req, res) => {
       venue,
       speakers,
       capacity,
-      isPaid,
-      feeAmount,
-    } = req.body;
-
-    const parsedSpeakers = JSON.parse(speakers); // Convert speaker JSON string to object
-
-    const newEvent = new Event({
-      name,
-      poster,
-      shortDescription,
-      longDescription,
-      eventDate,
-      startTime,
-      endTime,
-      duration,
-      venue,
-      speakers: parsedSpeakers,
-      capacity,
       isPaid: isPaid === "true",
       feeAmount: isPaid === "true" ? feeAmount : 0,
-      chapterId: chapter._id, // Link event to the chapter
+      chapterId: chapter._id,
     });
 
     await newEvent.save();
+
+    // ✅ Link Event to Chapter
+    chapter.events.push(newEvent._id);
+    await chapter.save();
+
     req.flash("success_msg", "Event created successfully!");
     res.redirect("/dashboard/chapter");
   } catch (error) {
@@ -73,6 +98,8 @@ router.post("/create", ensureRole("chapteradmin"), async (req, res) => {
     res.redirect("/events/create");
   }
 });
+
+
 
 // ✅ GET All Events (Visible to Students)
 router.get("/", async (req, res) => {
@@ -91,17 +118,26 @@ router.get("/", async (req, res) => {
 // ✅ GET Event Details
 router.get("/:id", async (req, res) => {
   try {
-    const event = await Event.findById(req.params.id).populate("chapterId speakers registeredUsers");
+    const event = await Event.findById(req.params.id)
+      .populate("chapterId speakers registeredUsers"); // Ensure chapterId is populated
+
     if (!event) {
       req.flash("error_msg", "Event not found.");
       return res.redirect("/events");
     }
-    res.render("eventDetails", { event });
+
+    const speaker = event.speakers[0] || {}; // Ensure at least an empty object
+    const isRegistered = req.user 
+      ? event.registeredUsers.some(user => user._id.toString() === req.user._id.toString()) 
+      : false;
+
+    res.render("eventDetails", { event, speaker, isRegistered });
   } catch (error) {
     console.error("Error fetching event details:", error);
     res.status(500).send("Server Error");
   }
 });
+
 
 // ✅ GET Register for Event
 router.get("/:id/register", ensureAuthenticated, async (req, res) => {
