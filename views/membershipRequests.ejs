@@ -1,63 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="/stylesheets/membershipRequest.css" rel="stylesheet">
 </head>
+
 <body>
-    
 
-<div class="container">
-  <h2>Membership Requests for <%= chapter.name %></h2>
 
-  <% if (requests.length > 0) { %>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Domain</th>
-          <th>Experience</th>
-          <th>GitHub</th>
-          <th>LinkedIn</th>
-          <th>Availability</th>
-          <th>Resume</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% requests.forEach(request => { %>
+  <div class="container">
+    <h2>Membership Requests for <%= chapter.name %>
+    </h2>
+
+    <% if (requests.length> 0) { %>
+      <table>
+        <thead>
           <tr>
-            <td><%= request.userId.name %></td>
-            <td><%= request.userId.email %></td>
-            <td><%= request.domain %></td>
-            <td><%= request.experience %></td>
-            <td><a href="<%= request.github %>" target="_blank">GitHub</a></td>
-            <td><a href="<%= request.linkedin %>" target="_blank">LinkedIn</a></td>
-            <td><%= request.availability %> hrs/week</td>
-            <td><a href="<%= request.resumeLink %>" target="_blank">View Resume</a></td>
-            <td><%= request.status %></td>
-            <td>
-              <% if (request.status === "Pending") { %>
-                <form action="/membership/approve/<%= request._id %>" method="POST">
-                  <button type="submit">Approve</button>
-                </form>
-                <form action="/membership/reject/<%= request._id %>" method="POST">
-                  <button type="submit">Reject</button>
-                </form>
-              <% } %>
-            </td>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Domain</th>
+            <th>Experience</th>
+            <th>GitHub</th>
+            <th>LinkedIn</th>
+            <th>Availability</th>
+            <th>Resume</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
-        <% }); %>
-      </tbody>
-    </table>
-  <% } else { %>
-    <p>No pending membership requests.</p>
-  <% } %>
-</div>
+        </thead>
+        <tbody>
+          <% requests.forEach(request=> { %>
+            <tr>
+              <td>
+                <%= request.userId.name %>
+              </td>
+              <td>
+                <%= request.userId.email %>
+              </td>
+              <td>
+                <%= request.domain %>
+              </td>
+              <td>
+                <%= request.experience %>
+              </td>
+              <td><a href="<%= request.github %>" target="_blank">GitHub</a></td>
+              <td><a href="<%= request.linkedin %>" target="_blank">LinkedIn</a></td>
+              <td>
+                <%= request.availability %> hrs/week
+              </td>
+              <td><a href="<%= request.resumeLink %>" target="_blank">View Resume</a></td>
+              <td>
+                <%= request.status %>
+              </td>
+              <td>
+                <% if (request.status==="Pending" ) { %>
+                  <form action="/membership/approve/<%= request._id %>" method="POST">
+                    <button type="submit">Approve</button>
+                  </form>
+                  <form action="/membership/reject/<%= request._id %>" method="POST">
+                    <button type="submit">Reject</button>
+                  </form>
+                  <% } %>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <p>No pending membership requests.</p>
+        <% } %>
+  </div>
 
 
 </body>
+
 </html>

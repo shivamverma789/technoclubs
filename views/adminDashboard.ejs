@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter Admin Dashboard</title>
+    <title>Super Admin Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -35,7 +35,7 @@
             box-shadow: var(--shadow);
         }
 
-        .btn-create-event,
+        .btn-create-chapter,
         .btn-back {
             background: var(--button-bg);
             color: black;
@@ -46,7 +46,7 @@
             border: none;
         }
 
-        .btn-create-event:hover,
+        .btn-create-chapter:hover,
         .btn-back:hover {
             background: var(--highlight);
             color: white;
@@ -72,20 +72,17 @@
     <a href="/" class="btn btn-back">Back to Home</a>
 
     <div class="dashboard-container">
-        <h2 class="text-center mb-4">Welcome, Chapter Admin</h2>
-        <p class="text-center">You have full access to manage events for your chapter.</p>
+        <h2 class="text-center mb-4">Welcome, Super Admin</h2>
+        <p class="text-center">You have full access to manage chapters.</p>
 
-        <!-- Create Event Button -->
+        <!-- Create Chapter Button -->
         <div class="text-center">
-            <a href="/events/create" class="btn btn-create-event">Create New Event</a>
+            <a href="/chapters/create" class="btn btn-create-chapter">Create New Chapter</a>
         </div>
 
-        <!-- View Events Button -->
+        <!-- View Chapters Button -->
         <div class="text-center">
-            <a href="/events" class="btn btn-create-event mt-4">View Events</a>
-        </div>
-        <div class="text-center">
-            <a href="" class="btn btn-create-event mt-4">Pending Applications</a>
+            <a href="/chapters/" class="btn btn-create-chapter mt-4">View Chapters</a>
         </div>
     </div>
 
