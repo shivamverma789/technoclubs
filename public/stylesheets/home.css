@@ -1,132 +1,241 @@
-/* General Styles */
+/* ============================= */
+/* 🌙 Dark Theme Variables */
+/* ============================= */
+:root {
+    --primary-bg: #0B0F1C;
+    /* Deep Navy - Dark Background */
+    --secondary-bg: #111827;
+    /* Slightly Lighter Dark */
+    --text-light: #F3F4F6;
+    /* Light Gray - For Readability */
+    --text-muted: #9CA3AF;
+    /* Muted Gray - Secondary Text */
+    --highlight: #3B82F6;
+    /* Electric Blue - Primary Accent */
+    --accent: #FACC15;
+    /* Neon Yellow - Call to Actions */
+    --error: #EF4444;
+    /* Vibrant Red - Alerts & Errors */
+
+    --gradient-bg: linear-gradient(145deg, #3B82F6, #8B5CF6);
+    /* Blue to Violet */
+    --gradient-highlight: linear-gradient(145deg, #14B8A6, #22D3EE);
+    /* Teal to Cyan */
+
+    --button-bg: linear-gradient(145deg, #FACC15, #FFD700);
+    /* Neon Yellow for Buttons */
+    --card-bg: linear-gradient(145deg, #1E293B, #111827);
+    /* Dark Gradient for Cards */
+
+    --shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    /* Neon Blue Glow */
+    --text-shadow: 0 0 5px rgba(59, 130, 246, 0.8);
+    /* Neon Text Effect */
+}
+
+/* ============================= */
+/* ✨ General Styles */
+/* ============================= */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #F6F5E6;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
     margin: 0;
     padding: 0;
-    text-align: center;
 }
 
-/* Header */
+/* ============================= */
+/* 🚀 DARK THEME HEADER (FULLY FIXED) */
+/* ============================= */
 header {
-    background: #F6F5E6;
-    padding: 10px 20px;
+    width: 100%;
+    background: var(--secondary-bg);
+    padding: 12px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 20px;
-    margin: 10px;
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
+/* ✅ HEADER CONTAINER */
 .header-container {
     display: flex;
-    justify-content: space-between;
     width: 100%;
     align-items: center;
+    gap: 300px;
 }
 
-.logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
+/* ✅ LOGO */
+.logo img {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
-.header-icons {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.header-icons img {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
-
-.login-btn {
-    padding: 8px 15px;
-    background: linear-gradient(135deg, #C6A3D8, #A989C5);
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.login-btn:hover {
-    background: #8A5FA8;
-}
-
-/* Navigation Bar */
+/* ✅ NAVIGATION */
 nav {
-    background: linear-gradient(135deg, #A9B5DF, #9789B5);
-    padding: 15px;
-    margin: 20px auto;
-    width: 80%;
-    border-radius: 30px;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    gap: 10px;
     display: flex;
     justify-content: center;
+}
+
+/* ✅ NAVIGATION LINKS */
+.nav-links {
+    list-style: none;
+    display: flex;
     gap: 40px;
+    padding: 0;
+    margin: 0;
 }
 
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: white;
+.nav-links li a {
+    color: var(--text-light);
+    font-size: 17px;
+    font-weight: 500;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
+    padding: 8px 12px;
+    transition: color 0.3s ease-in-out;
 }
 
-nav ul li a:hover {
+.nav-links li a:hover {
+    color: var(--highlight);
     text-decoration: underline;
 }
 
-/* ✅ FIXED: Our Community Section */
+/* ✅ HEADER ICONS */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.header-icons img {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    filter: brightness(0.8);
+    transition: filter 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.header-icons img:hover {
+    filter: brightness(1);
+    transform: scale(1.1);
+}
+
+/* ✅ USER PROFILE ICON */
+.user-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid var(--highlight);
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ✅ LOGIN BUTTON */
+.login-btn {
+    padding: 8px 15px;
+    background: var(--button-bg);
+    color: var(--secondary-bg);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.login-btn:hover {
+    background: var(--accent);
+    transform: scale(1.05);
+}
+
+/* ============================= */
+/* 🎯 Hero Section */
+/* ============================= */
+.hero {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    background-color: var(--secondary-bg);
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
+.hero-image {
+    max-width: 45%;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* ============================= */
+/* 🔥 Our Community (Chapters) */
+/* ============================= */
 .chapters-section {
-    background: #EDEBF4;
-    padding: 40px 0;
-    border-radius: 20px;
-    margin: 20px auto;
-    width: 90%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: var(--secondary-bg);
+    padding: 50px 0;
+    text-align: center;
 }
 
 .chapters-section h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 26px;
+    color: var(--text-light);
+    margin-bottom: 30px;
 }
 
 .chapters-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 25px;
 }
 
 .chapter-card {
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
     text-align: center;
-    width: 200px;
+    width: 220px;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+}
+
+.chapter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px var(--highlight);
 }
 
 .chapter-card img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
@@ -134,112 +243,110 @@ nav ul li a:hover {
 
 .chapter-card h3 {
     font-size: 18px;
-    margin-bottom: 10px;
+    color: var(--text-light);
 }
 
-
-.chapter-card:hover {
-    transform: translateY(-5px);
-}
-
-.chapter-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-}
-
-/* Events Section */
+/* ============================= */
+/* 🎉 Events Section */
+/* ============================= */
 .events-section {
-    margin: 40px auto;
-    width: 90%;
-    padding: 20px;
+    background: var(--secondary-bg);
+    padding: 50px 0;
+    text-align: center;
+}
+
+.events-section h2 {
+    font-size: 26px;
+    color: var(--text-light);
+    margin-bottom: 30px;
 }
 
 .events-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
 .event-card {
-    width: 200px;
+    background: var(--card-bg);
     padding: 15px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.event-card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.club-dynamics {
-    text-align: center;
-    padding: 50px 0;
     border-radius: 12px;
-    margin-top: 30px;
-    position: relative;
-}
-
-.club-dynamics h2 {
-    font-size: 26px;
-    font-weight: bold;
-    color: #3a2c55;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-
-.cd-container {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    flex-wrap: wrap;
-}
-
-.cd-member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(135deg, #e6e0f1, #ffffff);
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     width: 220px;
     transition: transform 0.3s ease-in-out;
 }
 
-.cd-member:hover {
+.event-card:hover {
     transform: translateY(-5px);
 }
 
-.cd-member img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid #ddd;
-    margin-bottom: 15px;
+.event-card img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
 }
 
-.cd-member .title {
+/* ============================= */
+/* 👥 Club Dynamics (Fixed) */
+/* ============================= */
+.club-dynamics {
+    text-align: center;
+    padding: 50px 0;
+    background: var(--secondary-bg);
+}
+
+.club-dynamics h2 {
+    font-size: 26px;
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+/* ✅ FLEX CONTAINER FOR MEMBERS */
+.cd-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 0 10%;
+}
+
+/* ✅ INDIVIDUAL MEMBER CARD */
+.cd-member {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.cd-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px var(--highlight);
+}
+
+/* ✅ PROFILE IMAGE */
+.cd-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--highlight);
+}
+
+/* ✅ MEMBER NAME */
+.cd-member .name {
     font-size: 18px;
     font-weight: bold;
-    color: #3a2c55;
+    color: var(--text-light);
     margin-bottom: 5px;
 }
 
-.cd-member .name {
+/* ✅ MEMBER TITLE */
+.cd-member .title {
     font-size: 16px;
-    color: #555;
-}
-
-.user-icon {
-    width: 30px !important;
-    height: 30px !important;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-muted);
 }

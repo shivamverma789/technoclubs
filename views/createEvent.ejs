@@ -13,6 +13,11 @@
 </head>
 
 <body>
+  <!-- Header -->
+  <header>
+    <% include ./header.ejs %>
+  </header>
+
   <form action="/events/create" method="POST" enctype="multipart/form-data">
 
     <!-- Event Details -->
@@ -26,14 +31,16 @@
         <img src="/uploads/icons/folder-upload.png" alt="Upload Icon" class="upload-icon">
         <p>Drag and drop image, or <span>click to browse</span></p>
       </div>
-      <input type="file" id="posterInput" name="poster" accept="image/*" required onchange="updateFileName('posterInput', 'posterFileName')">
+      <input type="file" id="posterInput" name="poster" accept="image/*" required
+        onchange="updateFileName('posterInput', 'posterFileName')">
       <p id="posterFileName"></p>
 
       <label>Short Description:</label>
       <textarea name="shortDescription" placeholder="Brief overview of the event (100-150 words)" required></textarea>
 
       <label>Long Description:</label>
-      <textarea name="longDescription" placeholder="Detailed event explanation, agenda, and highlights" required></textarea>
+      <textarea name="longDescription" placeholder="Detailed event explanation, agenda, and highlights"
+        required></textarea>
     </div>
 
     <!-- Event Schedule & Venue -->
@@ -88,7 +95,8 @@
             <img src="/uploads/icons/folder-upload.png" alt="Upload Icon" class="upload-icon">
             <p>Drag and drop image, or <span>click to browse</span></p>
           </div>
-          <input type="file" id="speakerInput0" name="speakerProfile[]" accept="image/*" required onchange="updateFileName('speakerInput0', 'speakerFileName0')">
+          <input type="file" id="speakerInput0" name="speakerProfile[]" accept="image/*" required
+            onchange="updateFileName('speakerInput0', 'speakerFileName0')">
           <p id="speakerFileName0"></p>
         </div>
       </div>
@@ -152,4 +160,5 @@
   </script>
 
 </body>
+
 </html>

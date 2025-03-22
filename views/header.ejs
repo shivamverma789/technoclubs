@@ -1,0 +1,27 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/header.css">
+</head>
+
+<header>
+    <div class="header-container">
+        <a href="/"> <!-- Added anchor tag to make the logo clickable -->
+            <img src="/uploads/logo.png" alt="Logo" class="logo">
+        </a>
+
+        <div class="header-icons">
+            <img src="/uploads/icons/notification.png" alt="Notifications">
+            <img src="/uploads/icons/gift.png" alt="Gifts">
+
+            <% if (user) { %>
+                <!-- Show user icon when logged in -->
+                <a href="/profile">
+                    <img src="<%= user.profileImage ? '/uploads/profilePictures/' + user.profileImage : '/uploads/demoImages/userProfile.jpg' %>"
+                        alt="User Profile" class="user-icon">
+                </a>
+                <% } else { %>
+                    <!-- Show login button if not logged in -->
+                    <a href="/login" class="btn login-btn">Login</a>
+                    <% } %>
+        </div>
+    </div>
+</header>

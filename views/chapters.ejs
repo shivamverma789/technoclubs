@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    
+    <!-- Header -->
+    <header>
+        <% include ./header.ejs %>
+    </header>
 
     <div class="container">
         <h2>All Chapters</h2>
@@ -19,7 +24,8 @@
                 <div class="chapters-list">
                     <% chapters.forEach(chapter=> { %>
                         <div class="chapter-card">
-                            <img src="/uploads/chapterProfiles/<%= chapter.profileImage %>" alt="<%= chapter.name %> Logo" class="chapter-logo">
+                            <img src="/uploads/chapterProfiles/<%= chapter.profileImage %>"
+                                alt="<%= chapter.name %> Logo" class="chapter-logo">
                             <div class="chapter-info">
                                 <h3>
                                     <%= chapter.name %>
