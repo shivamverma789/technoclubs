@@ -9,7 +9,7 @@ const chapterRoutes = require("./chapter");
 const eventRoutes = require("./event");
 const membershipRoutes = require("./membership");
 const homeRoutes = require("./home");
-
+const feedbackRoutes = require("./feedback");
 
 // Use routes
 router.get("/", homeRoutes);
@@ -19,5 +19,7 @@ router.use("/dashboard", dashboardRoutes);
 router.use("/chapters", chapterRoutes);
 router.use("/events", eventRoutes);
 router.use("/membership", membershipRoutes);
+router.use("/feedback", feedbackRoutes);
+
 
 module.exports = router;

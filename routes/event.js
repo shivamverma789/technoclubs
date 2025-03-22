@@ -55,7 +55,7 @@ router.post("/create", ensureRole("chapteradmin"), upload, async (req, res) => {
         speakers.push({
           name: speakerName[i],
           description: speakerDescription[i],
-          profilePhoto: req.files[`speakerProfile[${i}]`] ? req.files[`speakerProfile[${i}]`][0].filename : null,
+          profilePhoto: req.files[speakerProfile[${i}]] ? req.files[speakerProfile[${i}]][0].filename : null,
         });
       }
     } else if (speakerName) {
@@ -159,7 +159,7 @@ router.post("/register/:eventId", ensureAuthenticated, async (req, res) => {
     // Check if user is already registered
     if (event.registeredUsers.includes(req.user._id)) {
       req.flash("error_msg", "You have already registered for this event.");
-      return res.redirect(`/events/${event._id}`);
+      return res.redirect(/events/${event._id});
     }
 
     // Register the user
@@ -167,7 +167,7 @@ router.post("/register/:eventId", ensureAuthenticated, async (req, res) => {
     await event.save();
 
     req.flash("success_msg", "You have successfully registered for the event!");
-    res.redirect(`/events/${event._id}`);
+    res.redirect(/events/${event._id});
   } catch (error) {
     console.error("Error registering for event:", error);
     req.flash("error_msg", "Something went wrong.");

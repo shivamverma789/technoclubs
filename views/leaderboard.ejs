@@ -11,63 +11,43 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="" alt="Logo" width="40">
-                TechClubs
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="clubs.html">Communities</a></li>
-                    <li class="nav-item"><a class="nav-link" href="leaderboard.html">Leaderboard</a></li>
-                    <li class="nav-item">
-                        <button id="themeToggle" class="btn btn-sm btn-outline-secondary ms-2">🌓</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <% include ./header.ejs %>
 
-    <div class="container py-5">
-        <h1 class="text-center mb-5">Club Leaderboard</h1>
+        <div class="container py-5">
+            <h1 class="text-center mb-5">User Leaderboard</h1>
 
-        <!-- Podium Section -->
-        <div class="podium-container">
-            <div class="podium-rank podium-2">
-                <div class="crown">🥈</div>
-                <div class="podium-stand">
-                    <div class="rank-badge">2</div>
-                    <h3>GDSC</h3>
-                    <p>11,890 pts</p>
+            <!-- Podium Section -->
+            <div class="podium-container">
+                <div class="podium-rank podium-2">
+                    <div class="crown">🥈</div>
+                    <div class="podium-stand">
+                        <div class="rank-badge">2</div>
+                        <h3>User 1</h3>
+                        <p>11,890 pts</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="podium-rank podium-1">
-                <div class="crown">👑</div>
-                <div class="podium-stand">
-                    <div class="rank-badge">1</div>
-                    <h3>AWS Club</h3>
-                    <p>12,450 pts</p>
+                <div class="podium-rank podium-1">
+                    <div class="crown">👑</div>
+                    <div class="podium-stand">
+                        <div class="rank-badge">1</div>
+                        <h3>User 2</h3>
+                        <p>12,450 pts</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="podium-rank podium-3">
-                <div class="crown">🥉</div>
-                <div class="podium-stand">
-                    <div class="rank-badge">3</div>
-                    <h3>MU-ACM</h3>
-                    <p>10,950 pts</p>
+                <div class="podium-rank podium-3">
+                    <div class="crown">🥉</div>
+                    <div class="podium-stand">
+                        <div class="rank-badge">3</div>
+                        <h3>User 3</h3>
+                        <p>10,950 pts</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    
+
 </body>
 
 </html>
