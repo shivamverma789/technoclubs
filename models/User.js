@@ -10,6 +10,8 @@ const UserSchema = new mongoose.Schema(
     degree: { type: String },
     role: { type: String, enum: ["superadmin", "chapteradmin", "user"], default: "user" },
     chapterId: { type: mongoose.Schema.Types.ObjectId, ref: "Chapter" }, // 🔹 Link user to a chapter
+    registeredEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }], // 🔹 Track registered events
+    credits: { type: Number, default: 0 }, // 🔹 Add credits for attending events
   },
   { timestamps: true }
 );

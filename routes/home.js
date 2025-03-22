@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Chapter = require("../models/Chapter");
 const Event = require("../models/Event");
+const User = require("../models/User");
+const { ensureAuthenticated, ensureRole } = require("../middleware/auth");
 
 // Home Page Route
 router.get("/", async (req, res) => {

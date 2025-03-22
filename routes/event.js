@@ -2,6 +2,7 @@ const express = require("express");
 const { ensureRole, ensureAuthenticated } = require("../middleware/auth");
 const Event = require("../models/Event");
 const Chapter = require("../models/Chapter");
+const User = require("../models/User");
 const multer = require("multer");
 const upload = require("../middleware/multer"); // Import Multer middleware
 
@@ -119,19 +120,25 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const event = await Event.findById(req.params.id)
-      .populate("chapterId speakers registeredUsers"); // Ensure chapterId is populated
+      .populate("chapterId speakers registeredUsers")
+      .lean(); // Convert to plain JS object for better performance in EJS
 
     if (!event) {
       req.flash("error_msg", "Event not found.");
       return res.redirect("/events");
     }
 
-    const speaker = event.speakers[0] || {}; // Ensure at least an empty object
-    const isRegistered = req.user 
-      ? event.registeredUsers.some(user => user._id.toString() === req.user._id.toString()) 
+    // Ensure there are speakers (handle multiple speakers)
+    const speakers = event.speakers.length ? event.speakers : [];
+
+    // Check if the user is logged in and registered
+    const isRegistered = req.user
+      ? event.registeredUsers.some(user => user._id.toString() === req.user._id.toString())
       : false;
 
-    res.render("eventDetails", { event, speaker, isRegistered });
+      const showRegisterButton = event.status === "upcoming" && !isRegistered;
+
+    res.render("eventDetails", { event, speakers, isRegistered,showRegisterButton, user: req.user || null });
   } catch (error) {
     console.error("Error fetching event details:", error);
     res.status(500).send("Server Error");
@@ -139,28 +146,32 @@ router.get("/:id", async (req, res) => {
 });
 
 
+
 // ✅ GET Register for Event
-router.get("/:id/register", ensureAuthenticated, async (req, res) => {
+router.post("/register/:eventId", ensureAuthenticated, async (req, res) => {
   try {
-    const event = await Event.findById(req.params.id);
+    const event = await Event.findById(req.params.eventId);
     if (!event) {
       req.flash("error_msg", "Event not found.");
       return res.redirect("/events");
     }
 
+    // Check if user is already registered
     if (event.registeredUsers.includes(req.user._id)) {
-      req.flash("error_msg", "You are already registered for this event.");
+      req.flash("error_msg", "You have already registered for this event.");
       return res.redirect(`/events/${event._id}`);
     }
 
+    // Register the user
     event.registeredUsers.push(req.user._id);
     await event.save();
 
-    req.flash("success_msg", "Successfully registered for the event!");
+    req.flash("success_msg", "You have successfully registered for the event!");
     res.redirect(`/events/${event._id}`);
   } catch (error) {
     console.error("Error registering for event:", error);
-    res.status(500).send("Server Error");
+    req.flash("error_msg", "Something went wrong.");
+    res.redirect("/events");
   }
 });
 

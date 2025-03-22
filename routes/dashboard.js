@@ -1,5 +1,6 @@
 const express = require("express");
 const { ensureAuthenticated, ensureRole } = require("../middleware/auth");
+const User = require("../models/User");
 
 const router = express.Router();
 
@@ -21,5 +22,17 @@ router.get("/", ensureAuthenticated, (req, res) => {
   if (req.user.role === "chapteradmin") return res.redirect("/dashboard/chapter");
   return res.redirect("/dashboard/user");
 });
+
+router.get("/leaderboard",ensureRole("user"), async (req, res) => {
+    console.log("Leaderboard route accessed!"); // Debug log
+    try {
+      const users = await User.find().sort({ credits: -1 });
+      console.log("Users fetched:", users); // Check if users are found
+      res.render("leaderboard", { users });
+    } catch (error) {
+      console.error("Error fetching leaderboard:", error);
+      res.status(500).send("Error fetching leaderboard");
+    }
+  });
 
 module.exports = router;

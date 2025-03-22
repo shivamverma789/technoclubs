@@ -56,19 +56,20 @@
             <% } else { %>
                 <p>No speakers assigned for this event.</p>
             <% } %>
-
+                
             <h2>Registered Users</h2>
             <p class="registered-users-count">Total Registered: <%= event.registeredUsers.length %></p>
 
 
             <!-- Registration Button -->
-            <% if (!isRegistered) { %>
+            <% if (showRegisterButton) { %>
                 <form action="/events/register/<%= event._id %>" method="POST">
-                    <button type="submit" class="register-btn">Register for Event</button>
+                  <button type="submit">Register</button>
                 </form>
-            <% } else { %>
-                <p class="registered-message">You are already registered for this event.</p>
-            <% } %>
+              <% } else if (isRegistered) { %>
+                
+                <p>You have already registered for this event.</p>
+              <% } %>
         </div>
     </div>
 </body>
