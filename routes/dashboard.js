@@ -23,7 +23,7 @@ router.get("/", ensureAuthenticated, (req, res) => {
   return res.redirect("/dashboard/user");
 });
 
-router.get("/leaderboard",ensureRole("user"), async (req, res) => {
+router.get("/leaderboard", async (req, res) => {
     console.log("Leaderboard route accessed!"); // Debug log
     try {
       const users = await User.find().sort({ credits: -1 });
