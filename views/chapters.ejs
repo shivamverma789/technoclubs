@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Chapters</title>
-    <link rel="stylesheet" href="stylesheets/chapters.css">
+    <link rel="stylesheet" href="/stylesheets/chapters.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
                 <div class="chapters-list">
                     <% chapters.forEach(chapter=> { %>
                         <div class="chapter-card">
-                            <img src="/images/<%= chapter.image %>" alt="<%= chapter.name %> Logo" class="chapter-logo">
+                            <img src="/uploads/chapterProfiles/<%= chapter.profileImage %>" alt="<%= chapter.name %> Logo" class="chapter-logo">
                             <div class="chapter-info">
                                 <h3>
                                     <%= chapter.name %>

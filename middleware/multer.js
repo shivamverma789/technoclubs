@@ -8,6 +8,8 @@ const storage = multer.diskStorage({
       cb(null, "uploads/eventPosters/"); // Folder for event posters
     } else if (file.fieldname.startsWith("speakerProfile")) {
       cb(null, "uploads/speakerProfiles/"); // Folder for speaker profiles
+    } else if (file.fieldname === "profileImage") {
+      cb(null, "uploads/chapterProfiles/"); // Folder for chapter profile images
     }
   },
   filename: function (req, file, cb) {
@@ -34,6 +36,7 @@ const upload = multer({
 }).fields([
   { name: "poster", maxCount: 1 }, // Event Poster
   { name: "speakerProfile", maxCount: 5 }, // Up to 5 speaker images
+  { name: "profileImage", maxCount: 1 }, // Chapter Profile Image
 ]);
 
 module.exports = upload;

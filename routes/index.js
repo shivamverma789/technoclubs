@@ -8,9 +8,11 @@ const dashboardRoutes = require("./dashboard");
 const chapterRoutes = require("./chapter");
 const eventRoutes = require("./event");
 const membershipRoutes = require("./membership");
+const homeRoutes = require("./home");
+
 
 // Use routes
-router.get("/", (req, res) => res.render("index"));
+router.get("/", homeRoutes);
 router.use("/auth", authRoutes); // register and login
 router.use("/users", userRoutes);
 router.use("/dashboard", dashboardRoutes);

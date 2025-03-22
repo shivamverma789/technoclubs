@@ -2,6 +2,7 @@ const express = require("express");
 const { ensureRole, ensureAuthenticated } = require("../middleware/auth");
 const Chapter = require("../models/Chapter");
 const User = require("../models/User");
+const upload = require("../middleware/multer");
 
 const router = express.Router();
 
@@ -30,7 +31,7 @@ router.get("/create", ensureRole("superadmin"), async (req, res) => {
 
 
 // ✅ POST Create Chapter (Only Super Admin)
-router.post("/create", ensureRole("superadmin"), async (req, res) => {
+router.post("/create", ensureRole("superadmin"), upload, async (req, res) => {
   try {
     const { name, description, president, vicePresident, coordinator, admin } = req.body;
 
@@ -46,6 +47,12 @@ router.post("/create", ensureRole("superadmin"), async (req, res) => {
       return res.redirect("/chapters/create");
     }
 
+    // Handle profile image upload
+    let profileImagePath = "";
+    if (req.files && req.files.profileImage) {
+      profileImagePath = req.files.profileImage[0].filename; // Save only the filename
+    }
+
     // Create new chapter
     const newChapter = new Chapter({
       name,
@@ -53,7 +60,8 @@ router.post("/create", ensureRole("superadmin"), async (req, res) => {
       president,
       vicePresident,
       coordinator,
-      admin
+      admin,
+      profileImage: profileImagePath,
     });
 
     await newChapter.save();
@@ -72,6 +80,7 @@ router.post("/create", ensureRole("superadmin"), async (req, res) => {
     res.redirect("/chapters/create");
   }
 });
+
 
 
 

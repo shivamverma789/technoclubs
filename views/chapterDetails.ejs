@@ -3,56 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= chapter.name %> - Details</title>
     <link rel="stylesheet" href="/stylesheets/chapterDetails.css">
 </head>
 <body>
+
     <div class="chapter-container">
-        <h1><%= chapter.name %></h1>
-        <p><%= chapter.description %></p>
-      
+        <!-- Chapter Profile Image -->
+        <div class="chapter-header">
+            <img src="/uploads/chapterProfiles/<%= chapter.profileImage %>" alt="<%= chapter.name %>" class="chapter-profile-img">
+            <h1><%= chapter.name %></h1>
+        </div>
+
+        <p class="chapter-description"><%= chapter.description %></p>
+
+        <!-- Team Members -->
         <h3>Team</h3>
-        <ul>
-          <li><strong>President:</strong> <%= chapter.president.name %></li>
-          <li><strong>Vice President:</strong> <%= chapter.vicePresident.name %></li>
-          <li><strong>Coordinator:</strong> <%= chapter.coordinator.name %></li>
-          <li><strong>Admin:</strong> <%= chapter.admin.name %></li>
+        <ul class="team-list">
+            <li><strong>President:</strong> <%= chapter.president.name %></li>
+            <li><strong>Vice President:</strong> <%= chapter.vicePresident.name %></li>
+            <li><strong>Coordinator:</strong> <%= chapter.coordinator.name %></li>
+            <li><strong>Admin:</strong> <%= chapter.admin.name %></li>
         </ul>
-      
+
+        <!-- Upcoming Events -->
         <h3>Upcoming Events</h3>
         <div class="events-container">
-          <% if (upcomingEvents.length === 0) { %>
-            <p>No upcoming events.</p>
-          <% } else { %>
-            <% upcomingEvents.forEach(event => { %>
-              <div class="event-card">
-                <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
-                <h4><%= event.name %></h4>
-                <p><%= event.shortDescription %></p>
-                <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
-                <a href="/events/<%= event._id %>" class="btn">View Details</a>
-              </div>
-            <% }); %>
-          <% } %>
+            <% if (upcomingEvents.length === 0) { %>
+                <p class="no-events">No upcoming events.</p>
+            <% } else { %>
+                <% upcomingEvents.forEach(event => { %>
+                    <div class="event-card">
+                        <img src="/<%= event.poster %>" alt="<%= event.name %>" class="event-poster">
+                        <h4><%= event.name %></h4>
+                        <p><%= event.shortDescription %></p>
+                        <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+                        <a href="/events/<%= event._id %>" class="btn">View Details</a>
+                    </div>
+                <% }); %>
+            <% } %>
         </div>
-      
+
+        <!-- Past Events -->
         <h3>Past Events</h3>
         <div class="events-container">
-          <% if (pastEvents.length === 0) { %>
-            <p>No past events.</p>
-          <% } else { %>
-            <% pastEvents.forEach(event => { %>
-              <div class="event-card">
-                <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
-                <h4><%= event.name %></h4>
-                <p><%= event.shortDescription %></p>
-                <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
-                <a href="/events/<%= event._id %>" class="btn">View Details</a>
-              </div>
-            <% }); %>
-          <% } %>
+            <% if (pastEvents.length === 0) { %>
+                <p class="no-events">No past events.</p>
+            <% } else { %>
+                <% pastEvents.forEach(event => { %>
+                    <div class="event-card">
+                        <img src="/<%= event.poster %>" alt="<%= event.name %>" class="event-poster">
+                        <h4><%= event.name %></h4>
+                        <p><%= event.shortDescription %></p>
+                        <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+                        <a href="/events/<%= event._id %>" class="btn">View Details</a>
+                    </div>
+                <% }); %>
+            <% } %>
         </div>
-      </div>
-      
+    </div>
+
 </body>
 </html>

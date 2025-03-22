@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techno Clubs | Home</title>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Techno Clubs</h1>
+        <p>Explore various chapters and participate in upcoming events!</p>
+    </header>
+
+    <section class="chapters-section">
+        <h2>Chapters</h2>
+        <div class="chapters-container">
+            <% chapters.forEach(chapter => { %>
+                <div class="chapter-card">
+                    <h3><%= chapter.name %></h3>
+                    <p><%= chapter.description %></p>
+                    <a href="/chapters/<%= chapter._id %>" class="btn">View Details</a>
+                </div>
+            <% }); %>
+        </div>
+    </section>
+
+    <section class="events-section">
+        <h2>Upcoming Events</h2>
+        <div class="events-container">
+            <% if (upcomingEvents.length === 0) { %>
+                <p>No upcoming events.</p>
+            <% } else { %>
+                <% upcomingEvents.forEach(event => { %>
+                    <div class="event-card">
+                        <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+                        <h3><%= event.name %></h3>
+                        <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
+                        <a href="/events/<%= event._id %>" class="btn">View Details</a>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+    </section>
+
+</body>
+</html>

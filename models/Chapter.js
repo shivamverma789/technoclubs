@@ -11,6 +11,10 @@ const ChapterSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profileImage: {
+      type: String, // Stores the image file path
+      default: "", // Default value in case no image is uploaded
+    },
     events: [
       {
         type: mongoose.Schema.Types.ObjectId,
