@@ -2,7 +2,6 @@ const express = require("express");
 const { ensureRole, ensureAuthenticated } = require("../middleware/auth");
 const Chapter = require("../models/Chapter");
 const User = require("../models/User");
-const Event = require("../models/Event"); // Ensure Event model is imported
 const upload = require("../middleware/multer");
 
 const router = express.Router();
@@ -30,6 +29,8 @@ router.get("/create", ensureRole("superadmin"), async (req, res) => {
   }
 });
 
+
+
 // 🟢 POST - Create New Chapter (Super Admin Only)
 router.post("/create", ensureAuthenticated, ensureRole("superadmin"), upload, async (req, res) => {
   try {
@@ -55,6 +56,13 @@ router.post("/create", ensureAuthenticated, ensureRole("superadmin"), upload, as
     res.redirect("/chapters/create");
   }
 });
+
+module.exports = router;
+
+
+
+
+
 
 // ✅ GET Chapter Details Page
 router.get("/:id", async (req, res) => {
@@ -82,7 +90,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// view chapter
+
+//view chapter
 router.get("/:chapterId/team", ensureAuthenticated, async (req, res) => {
   try {
     const chapter = await Chapter.findById(req.params.chapterId).populate("teamMembers", "name email");
@@ -98,6 +107,7 @@ router.get("/:chapterId/team", ensureAuthenticated, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 
 // ✅ GET Edit Chapter Page (Only Super Admin)
 router.get("/:id/edit", ensureRole("superadmin"), async (req, res) => {
