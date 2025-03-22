@@ -1,48 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techno Clubs | Home</title>
+    <title>Techno Clubs Portal</title>
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
+
 <body>
 
+    <!-- Header -->
     <header>
-        <h1>Welcome to Techno Clubs</h1>
-        <p>Explore various chapters and participate in upcoming events!</p>
+        <div class="header-container">
+            <img src="/uploads/logo.png" alt="Techno Clubs Logo" class="logo">
+            <div class="header-icons">
+                <img src="/uploads/icons/notification.png" alt="Notifications">
+                <img src="/uploads/icons/gift.png" alt="Gifts">
+
+                <% if (user) { %>
+                    <!-- Show user icon when logged in -->
+                    <a href="/profile">
+                        <img src="<%= user.profileImage ? '/uploads/profilePictures/' + user.profileImage : '/uploads/demoImages/userProfile.jpg' %>"
+                            alt="User Profile" class="user-icon">
+                    </a>
+                    <% } else { %>
+                        <!-- Show login button if not logged in -->
+                        <a href="/login" class="btn login-btn">Login</a>
+                        <% } %>
+
+            </div>
+        </div>
     </header>
 
-    <section class="chapters-section">
-        <h2>Chapters</h2>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/">Communities</a></li>
+            <li><a href="/leaderboard">Leader Board</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <section id="chapters" class="chapters-section">
+        <h2>Our Community</h2>
         <div class="chapters-container">
-            <% chapters.forEach(chapter => { %>
-                <div class="chapter-card">
-                    <h3><%= chapter.name %></h3>
-                    <p><%= chapter.description %></p>
-                    <a href="/chapters/<%= chapter._id %>" class="btn">View Details</a>
-                </div>
-            <% }); %>
+            <% chapters.forEach(chapter=> { %>
+                <a href="/chapters/<%= chapter._id %>" class="chapter-card-link">
+                    <div class="chapter-card">
+                        <img src="/uploads/chapterProfiles/<%= chapter.profileImage %>" alt="<%= chapter.name %>">
+                        <h3>
+                            <%= chapter.name %>
+                        </h3>
+                    </div>
+                </a>
+
+                <% }); %>
         </div>
     </section>
 
-    <section class="events-section">
+    <section id="events" class="events-section">
         <h2>Upcoming Events</h2>
         <div class="events-container">
-            <% if (upcomingEvents.length === 0) { %>
+            <% if (upcomingEvents.length===0) { %>
                 <p>No upcoming events.</p>
-            <% } else { %>
-                <% upcomingEvents.forEach(event => { %>
-                    <div class="event-card">
-                        <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
-                        <h3><%= event.name %></h3>
-                        <p><strong>Date:</strong> <%= event.eventDate.toDateString() %></p>
-                        <a href="/events/<%= event._id %>" class="btn">View Details</a>
-                    </div>
-                <% }); %>
-            <% } %>
+                <% } else { %>
+                    <% upcomingEvents.forEach(event=> { %>
+                        <div class="event-card" onclick="redirectToEvent('<%= event._id %>')">
+                            <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+                        </div>
+                        <% }); %>
+                            <% } %>
         </div>
     </section>
 
+    <section id="club-dynamics" class="club-dynamics">
+        <h2>Club Dynamics</h2>
+        <div class="cd-container">
+            <div class="cd-member">
+                <img src="/uploads/demoImages/president.jpg" alt="President">
+                <p class="title">President</p>
+                <p class="name">Nick Jacob</p>
+            </div>
+            <div class="cd-member">
+                <img src="/uploads/demoImages/vice_president.jpg" alt="Vice President">
+                <p class="title">Vice President</p>
+                <p class="name">Kailey Mayre</p>
+            </div>
+            <div class="cd-member">
+                <img src="/uploads/demoImages/club_coordinator.jpg" alt="Club Coordinator">
+                <p class="title">Club Coordinator</p>
+                <p class="name">Ben Doppler</p>
+            </div>
+        </div>
+    </section>
+
+
 </body>
+
 </html>
+
+<script>
+    function redirectToEvent(eventId) {
+        window.location.href = `/events/${eventId}`;
+    }
+
+</script>

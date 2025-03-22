@@ -76,7 +76,11 @@
         <textarea name="speakerDescription" placeholder="Brief bio or achievements" required></textarea>
 
         <label>Speaker Profile Photo:</label>
-        <input type="file" name="speakerProfile" placeholder="Upload speaker image" accept="image/*" required />
+        <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+          <img src="/uploads/icons/folder-upload.png" alt="Upload Icon" class="upload-icon">
+          <!-- Replace with your actual icon -->
+          <p>Drag and drop image, or <span>click to browse</span></p>
+        </div>
       </div>
       <button type="button" onclick="addSpeaker()">Add Another Speaker</button>
     </div>
