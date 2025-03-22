@@ -30,85 +30,35 @@ router.get("/create", ensureRole("superadmin"), async (req, res) => {
 });
 
 
-// ✅ POST Create Chapter (Only Super Admin)
 
-router.post("/create", ensureRole("chapteradmin"), upload, async (req, res) => {
+// 🟢 POST - Create New Chapter (Super Admin Only)
+router.post("/create", ensureAuthenticated, ensureRole("superadmin"), upload, async (req, res) => {
   try {
-    const chapter = await Chapter.findOne({ _id: req.user.chapterId });
-    if (!chapter) {
-      req.flash("error_msg", "You are not assigned to any chapter.");
-      return res.redirect("/dashboard/chapter");
-    }
+    const { name, description, president, vicePresident, coordinator, admin } = req.body;
 
-    const {
+    // ✅ Create new chapter object
+    const newChapter = new Chapter({
       name,
-      shortDescription,
-      longDescription,
-      eventDate,
-      startTime,
-      endTime,
-      duration,
-      venue,
-      capacity,
-      isPaid,
-      feeAmount,
-      speakerName,
-      speakerDescription,
-    } = req.body;
-
-    // ✅ Handle Speaker Details (Multiple Speakers)
-    const speakers = [];
-    if (Array.isArray(speakerName)) {
-      for (let i = 0; i < speakerName.length; i++) {
-        speakers.push({
-          name: speakerName[i],
-          description: speakerDescription[i],
-          profilePhoto: req.files["speakerProfile[]"] && req.files["speakerProfile[]"][i]
-            ? req.files["speakerProfile[]"][i].filename
-            : null,
-        });
-      }
-    } else if (speakerName) {
-      // If only one speaker is provided
-      speakers.push({
-        name: speakerName,
-        description: speakerDescription,
-        profilePhoto: req.files["speakerProfile[]"] ? req.files["speakerProfile[]"][0].filename : null,
-      });
-    }
-
-    // ✅ Create Event Object
-    const newEvent = new Event({
-      name,
-      poster: req.files["poster"] ? req.files["poster"][0].filename : null,
-      shortDescription,
-      longDescription,
-      eventDate,
-      startTime,
-      endTime,
-      duration,
-      venue,
-      speakers,
-      capacity,
-      isPaid: isPaid === "true",
-      feeAmount: isPaid === "true" ? feeAmount : 0,
-      chapterId: chapter._id,
+      description,
+      president,
+      vicePresident,
+      coordinator,
+      admin,
+      profileImage: req.files["profileImage"] ? req.files["profileImage"][0].filename : null, // ✅ Store image filename
     });
 
-    await newEvent.save();
-
-    // ✅ Link Event to Chapter
-    chapter.events.push(newEvent._id);
-    await chapter.save();
-
-    req.flash("success_msg", "Event created successfully!");
-    res.redirect("/dashboard/chapter");
+    await newChapter.save();
+    req.flash("success_msg", "Chapter created successfully!");
+    res.redirect("/chapters");
   } catch (error) {
-    console.error("Error creating event:", error);
-    req.flash("error_msg", "Something went wrong. Try again.");
-    res.redirect("/events/create");
+    console.error("Error creating chapter:", error);
+    req.flash("error_msg", "Something went wrong.");
+    res.redirect("/chapters/create");
   }
 });
+
+module.exports = router;
+
 
 
 
@@ -140,7 +90,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//view chapter team members
+//view chapter
 router.get("/:chapterId/team", ensureAuthenticated, async (req, res) => {
   try {
     const chapter = await Chapter.findById(req.params.chapterId).populate("teamMembers", "name email");

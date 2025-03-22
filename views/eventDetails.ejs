@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= chapter.name %> - Details
+    </title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/stylesheets/chapterDetails.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <style>
+        /* Root Theme Variables */
+        :root {
+            --primary-bg: #0B0F1C;
+            --secondary-bg: #111827;
+            --text-light: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --highlight: #3B82F6;
+            --accent: #FACC15;
+            --error: #EF4444;
+            --gradient-bg: linear-gradient(145deg, #3B82F6, #8B5CF6);
+            --button-bg: linear-gradient(145deg, #FACC15, #FFD700);
+            --card-bg: linear-gradient(145deg, #1E293B, #111827);
+            --shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding-top: 70px;
+            /* For space after the fixed header */
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            background: var(--secondary-bg);
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            width: 140px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li a {
+            color: var(--text-light);
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 8px 12px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-links li a:hover {
+            color: var(--highlight);
+            text-decoration: underline;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-icons i {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .header-icons i:hover {
+            color: var(--highlight);
+        }
+
+        .user-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid var(--highlight);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .user-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .login-btn {
+            padding: 8px 15px;
+            background: var(--button-bg);
+            color: var(--secondary-bg);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .login-btn:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .text-center {
+            padding-top: 100px;
+        }
+
+        /* Event Card Styles */
+        .card {
+            background: var(--card-bg);
+            border: none;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .card-img-top {
+            border-radius: 10px 10px 0 0;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+            background: var(--secondary-bg);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .card-title {
+            color: var(--highlight);
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: var(--text-light);
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .card-text strong {
+            color: var(--highlight);
+        }
+
+        .card .btn-primary {
+            background: var(--highlight);
+            color: var(--primary-bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .card .btn-primary:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* Section Title Styles */
+        h2 {
+            font-size: 2em;
+            color: var(--highlight);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--highlight);
+        }
+
+        /* No Upcoming/Past Events Message */
+        .text-muted {
+            color: var(--text-muted);
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Chapter Detail Section */
+        .chapter-profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--highlight);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .chapter-profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-top: 20px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Team Member Styles */
+        .list-unstyled li {
+            font-size: 1.2em;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .list-unstyled li strong {
+            color: var(--highlight);
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: var(--secondary-bg);
+            color: var(--text-light);
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--highlight);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <% include ./header.ejs %>
+
+        <!-- Main Content -->
+        <main class="container py-5">
+            <section class="text-center">
+                <img src="/uploads/chapterProfiles/<%= chapter.profileImage %>" alt="<%= chapter.name %> Profile"
+                    class="chapter-profile-img">
+                <h1 class="mt-3 fw-bold text-light">
+                    <%= chapter.name %>
+                </h1>
+                <p>
+                    <%= chapter.description %>
+                </p>
+                <a href="/membership/form/<%= chapter._id %>" class="btn btn-primary mt-3">Register for Membership</a>
+
+            </section>
+
+            <!-- Team Members -->
+            <section class="mt-5">
+                <h2 class="fw-bold border-bottom pb-2" style="border-color: var(--highlight);">Meet the Team</h2>
+                <ul class="list-unstyled mt-3">
+                    <li class="py-2"><strong>President:</strong>
+                        <%= chapter.president.name %>
+                    </li>
+                    <li class="py-2"><strong>Vice President:</strong>
+                        <%= chapter.vicePresident.name %>
+                    </li>
+                    <li class="py-2"><strong>Coordinator:</strong>
+                        <%= chapter.coordinator.name %>
+                    </li>
+                    <li class="py-2"><strong>Admin:</strong>
+                        <%= chapter.admin.name %>
+                    </li>
+                </ul>
+                <p>
+                    <strong>
+                        <%= chapter.teamMembers.length %> Members
+                    </strong> in the team
+                </p>
+                <a href="/chapters/<%= chapter._id %>/team" class="btn btn-outline-primary">View Team</a>
+
+            </section>
+
+            <!-- Events Section -->
+            <section class="mt-5">
+                <h2 class="fw-bold border-bottom pb-2" style="border-color: var(--highlight);">Upcoming Events</h2>
+                <% if (upcomingEvents.length===0) { %>
+                    <p class="text-muted">No upcoming events.</p>
+                    <% } else { %>
+                        <div class="row mt-3">
+                            <% upcomingEvents.forEach(event=> { %>
+                                <div class="col-md-4">
+                                    <div class="card p-3">
+                                        <img src="/uploads/eventPosters/<%= event.poster %>" class="card-img-top"
+                                            alt="<%= event.name %>">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold">
+                                                <%= event.name %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= event.shortDescription %>
+                                            </p>
+                                            <p><strong>Date:</strong>
+                                                <%= event.eventDate.toDateString() %>
+                                            </p>
+                                            <a href="/events/<%= event._id %>" class="btn btn-primary">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }); %>
+                        </div>
+                        <% } %>
+            </section>
+            <!-- ✅ Past Events Section -->
+            <section class="mt-5">
+                <h2 class="fw-bold border-bottom pb-2" style="border-color: var(--highlight);">Past Events</h2>
+
+                <% if (pastEvents.length===0) { %>
+                    <p class="text-muted">No past events.</p>
+                    <% } else { %>
+                        <div class="row mt-3">
+                            <% pastEvents.forEach(event=> { %>
+                                <div class="col-md-4">
+                                    <div class="card p-3">
+                                        <img src="/uploads/eventPosters/<%= event.poster %>" class="card-img-top"
+                                            alt="<%= event.name %>">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold">
+                                                <%= event.name %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= event.shortDescription %>
+                                            </p>
+                                            <p><strong>Date:</strong>
+                                                <%= event.eventDate.toDateString() %>
+                                            </p>
+                                            <a href="/events/<%= event._id %>" class="btn btn-primary">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }); %>
+                        </div>
+                        <% } %>
+            </section>
+
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
