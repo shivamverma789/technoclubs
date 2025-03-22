@@ -140,6 +140,23 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//view chapter team members
+router.get("/:chapterId/team", ensureAuthenticated, async (req, res) => {
+  try {
+    const chapter = await Chapter.findById(req.params.chapterId).populate("teamMembers", "name email");
+
+    if (!chapter) {
+      req.flash("error_msg", "Chapter not found.");
+      return res.redirect("/chapters");
+    }
+
+    res.render("teamMembers", { chapter });
+  } catch (error) {
+    console.error("Error fetching team members:", error);
+    res.status(500).send("Server Error");
+  }
+});
+
 
 // ✅ GET Edit Chapter Page (Only Super Admin)
 router.get("/:id/edit", ensureRole("superadmin"), async (req, res) => {

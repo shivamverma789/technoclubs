@@ -28,7 +28,9 @@
                     <%= chapter.name %>
                 </h1>
             </div>
-
+            <div class="membership-container">
+              <a href="/membership/form/<%= chapter._id %>" class="btn register-btn">Register for Membership</a>
+          </div>
             <p class="chapter-description">
                 <%= chapter.description %>
             </p>
@@ -49,6 +51,7 @@
                     <%= chapter.admin.name %>
                 </li>
             </ul>
+            <a href="/chapters/<%= chapter._id %>/team" class="btn team-btn">View All Team Members</a>
 
             <!-- Upcoming Events -->
             <h3>Upcoming Events</h3>

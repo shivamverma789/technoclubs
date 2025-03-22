@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Members - <%= chapter.name %></title>
+    <link rel="stylesheet" href="/stylesheets/team.css">
+</head>
+<body>
+
+<header>
+    <% include ./header.ejs %>
+</header>
+
+<div class="container">
+    <h1>Team Members of <%= chapter.name %></h1>
+
+    <% if (chapter.teamMembers.length === 0) { %>
+        <p>No team members found.</p>
+    <% } else { %>
+        <ul class="team-list">
+            <% chapter.teamMembers.forEach(member => { %>
+                <li>
+                    <strong>Name:</strong> <%= member.name %> <br>
+                    <strong>Email:</strong> <%= member.email %>
+                </li>
+            <% }); %>
+        </ul>
+    <% } %>
+
+    <a href="/chapters/<%= chapter._id %>" class="btn">Back to Chapter</a>
+</div>
+
+</body>
+</html>

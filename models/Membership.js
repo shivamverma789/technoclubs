@@ -1,29 +1,18 @@
 const mongoose = require("mongoose");
 
-const MembershipSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Reference to the applying user
-    required: true,
+const MembershipRequestSchema = new mongoose.Schema(
+  {
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    chapterId: { type: mongoose.Schema.Types.ObjectId, ref: "Chapter", required: true },
+    domain: { type: String, enum: ["Technical", "Content", "Graphics", "Operations", "PR"], required: true },
+    experience: { type: String, required: true },
+    github: { type: String },
+    linkedin: { type: String },
+    availability: { type: String, required: true },
+    resumeLink: { type: String, required: true },
+    status: { type: String, enum: ["Pending", "Accepted", "Rejected"], default: "Pending" },
   },
-  chapter: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Chapter", // Reference to the chapter being applied to
-    required: true,
-  },
-  resume: {
-    type: String, // URL or file path to resume
-    required: true,
-  },
-  experience: {
-    type: String,
-    required: false, // Optional description of experience
-  },
-  status: {
-    type: String,
-    enum: ["pending", "accepted", "rejected"],
-    default: "pending",
-  },
-}, { timestamps: true });
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("Membership", MembershipSchema);
+module.exports = mongoose.model("MembershipRequest", MembershipRequestSchema);

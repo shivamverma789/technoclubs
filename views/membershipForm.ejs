@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container">
+  <h2>Join <%= chapter.name %> Chapter</h2>
+  
+  <form action="/membership/request" method="POST">
+    <input type="hidden" name="chapterId" value="<%= chapter._id %>">
+    
+    <label>Domain:</label>
+    <select name="domain" required>
+      <option value="Technical">Technical</option>
+      <option value="Content">Content</option>
+      <option value="Graphics">Graphics</option>
+      <option value="Operations">Operations</option>
+      <option value="PR">PR</option>
+    </select>
+
+    <label>Relevant Experience:</label>
+    <textarea name="experience" required></textarea>
+
+    <label>GitHub Profile:</label>
+    <input type="url" name="github">
+
+    <label>LinkedIn Profile:</label>
+    <input type="url" name="linkedin">
+
+    <label>Availability per Week (in hours):</label>
+    <input type="number" name="availability" required>
+
+    <label>Resume (Google Drive Link):</label>
+    <input type="url" name="resumeLink" required>
+
+    <button type="submit">Submit Request</button>
+  </form>
+</div>
+
+</body>
+</html>
