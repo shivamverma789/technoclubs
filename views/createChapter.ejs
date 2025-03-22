@@ -1,50 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/createChapter.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/stylesheets/createChapter.css">
 </head>
+
 <body>
+  <div class="container">
+    <h2>Create a New Chapter</h2>
     <form action="/chapters/create" method="POST">
+
+      <div class="form-group">
         <label for="name">Chapter Name:</label>
         <input type="text" name="name" required />
-      
+      </div>
+
+      <div class="form-group">
         <label for="description">Description:</label>
         <textarea name="description" required></textarea>
-      
+      </div>
+
+      <div class="form-group">
         <label for="president">President:</label>
         <select name="president">
-          <% users.forEach(user => { %>
-            <option value="<%= user._id %>"><%= user.name %></option>
-          <% }); %>
+          <% users.forEach(user=> { %>
+            <option value="<%= user._id %>">
+              <%= user.name %>
+            </option>
+            <% }); %>
         </select>
-      
+      </div>
+
+      <div class="form-group">
         <label for="vicePresident">Vice President:</label>
         <select name="vicePresident">
-          <% users.forEach(user => { %>
-            <option value="<%= user._id %>"><%= user.name %></option>
-          <% }); %>
+          <% users.forEach(user=> { %>
+            <option value="<%= user._id %>">
+              <%= user.name %>
+            </option>
+            <% }); %>
         </select>
-      
+      </div>
+
+      <div class="form-group">
         <label for="coordinator">Coordinator:</label>
         <select name="coordinator">
-          <% users.forEach(user => { %>
-            <option value="<%= user._id %>"><%= user.name %></option>
-          <% }); %>
+          <% users.forEach(user=> { %>
+            <option value="<%= user._id %>">
+              <%= user.name %>
+            </option>
+            <% }); %>
         </select>
-      
+      </div>
+
+      <div class="form-group">
         <label for="chapterAdmin">Chapter Admin:</label>
         <select name="admin">
           <option value="">None</option>
-          <% users.forEach(user => { %>
-            <option value="<%= user._id %>"><%= user.name %></option>
-          <% }); %>
+          <% users.forEach(user=> { %>
+            <option value="<%= user._id %>">
+              <%= user.name %>
+            </option>
+            <% }); %>
         </select>
-      
-        <button type="submit">Create Chapter</button>
-      </form>
-      
+      </div>
+
+      <button type="submit">Create Chapter</button>
+    </form>
+  </div>
 </body>
+
 </html>
