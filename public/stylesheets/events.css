@@ -115,3 +115,32 @@ h2 {
 .register-button:hover {
     background: #4c214f;
 }
+
+/* Ensure the link doesn't look like a hyperlink */
+.event-card-link {
+    text-decoration: none;
+    /* Remove underline */
+    color: inherit;
+    /* Keep text color as normal */
+    display: block;
+    /* Make the entire card clickable */
+}
+
+/* Maintain existing event card styles */
+.event-card {
+    background: #d0d6f0;
+    padding: 15px;
+    width: 280px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2),
+        -10px -10px 20px rgba(255, 255, 255, 0.8);
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Hover effect for a clickable feel */
+.event-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

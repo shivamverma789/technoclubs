@@ -25,22 +25,24 @@
   <div class="events-container" id="upcoming-events">
     <% if (upcomingEvents.length> 0) { %>
       <% upcomingEvents.forEach(event=> { %>
-        <div class="event-card">
-          <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
-          <h3>
-            <%= event.name %>
-          </h3>
-          <p><strong>Category:</strong>
-            <%= event.category %>
-          </p>
-          <p>
-            <%= event.shortDescription %>
-          </p>
-          <p><strong>Date:</strong>
-            <%= event.eventDate.toDateString() %>
-          </p>
-          <button class="register-button">Register</button>
-        </div>
+        <a href="/events/<%= event._id %>" class="event-card-link">
+          <div class="event-card">
+            <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+            <h3>
+              <%= event.name %>
+            </h3>
+            <p><strong>Category:</strong>
+              <%= event.category %>
+            </p>
+            <p>
+              <%= event.shortDescription %>
+            </p>
+            <p><strong>Date:</strong>
+              <%= event.eventDate.toDateString() %>
+            </p>
+            <button class="register-button">Register</button>
+          </div>
+        </a>
         <% }) %>
           <% } else { %>
             <p>No upcoming events available.</p>
@@ -51,26 +53,29 @@
   <div class="events-container" id="past-events" style="display: none;">
     <% if (pastEvents.length> 0) { %>
       <% pastEvents.forEach(event=> { %>
-        <div class="event-card">
-          <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
-          <h3>
-            <%= event.name %>
-          </h3>
-          <p><strong>Category:</strong>
-            <%= event.category %>
-          </p>
-          <p>
-            <%= event.shortDescription %>
-          </p>
-          <p><strong>Date:</strong>
-            <%= event.eventDate.toDateString() %>
-          </p>
-        </div>
+        <a href="/event/<%= event._id %>" class="event-card-link">
+          <div class="event-card">
+            <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>">
+            <h3>
+              <%= event.name %>
+            </h3>
+            <p><strong>Category:</strong>
+              <%= event.category %>
+            </p>
+            <p>
+              <%= event.shortDescription %>
+            </p>
+            <p><strong>Date:</strong>
+              <%= event.eventDate.toDateString() %>
+            </p>
+          </div>
+        </a>
         <% }) %>
           <% } else { %>
             <p>No past events available.</p>
             <% } %>
   </div>
+
 
   <script>
     function showEvents(type) {
