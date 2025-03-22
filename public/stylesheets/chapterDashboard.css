@@ -1,0 +1,118 @@
+/* Global Styling */
+body {
+    background: var(--primary-bg);
+    color: var(--text-light);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Chapter Info */
+.chapter-info {
+    background: var(--secondary-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.chapter-info h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.chapter-info p {
+    margin: 0.5rem 0;
+}
+
+/* Profile Image */
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Actions Section */
+.actions {
+    margin-top: 2rem;
+}
+
+.actions h2 {
+    font-size: 1.6rem;
+}
+
+.actions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.actions ul li {
+    margin: 1rem 0;
+}
+
+.actions .btn {
+    background: var(--button-bg);
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.actions .btn:hover {
+    background: var(--highlight);
+}
+
+/* Team Members Section */
+.recent-team-members {
+    margin-top: 3rem;
+}
+
+.recent-team-members ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recent-team-members ul li {
+    background: var(--card-bg);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.recent-team-members a {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: var(--highlight);
+}
+
+/* Events Section */
+.events {
+    margin-top: 3rem;
+}
+
+.events ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.events ul li {
+    background: var(--card-bg);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.events a {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: var(--highlight);
+}
