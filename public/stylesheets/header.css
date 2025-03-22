@@ -1,0 +1,58 @@
+/* Header */
+header {
+    width: 95%;
+    background: #F6F5E6;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-icons img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.login-btn {
+    padding: 8px 15px;
+    background: linear-gradient(135deg, #C6A3D8, #A989C5);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-btn:hover {
+    background: #8A5FA8;
+}
+
+.user-icon {
+    margin-left: 10px;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}

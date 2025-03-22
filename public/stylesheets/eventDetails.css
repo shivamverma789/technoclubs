@@ -1,98 +1,178 @@
-body {
-    font-family: Arial, sans-serif;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-.event-container {
-    width: 60%;
-    margin: 30px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Event Poster Styling */
-.event-header img {
-    width: 300px;  /* Reduced size */
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;  /* Centers the image */
-}
-
-/* General Event Info */
-.event-content {
-    padding: 20px;
-    text-align: left;
-}
-
-h1 {
+body {
+    background-color: #f6f5e6;
+    /* Light cream background */
     color: #333;
+    padding: 20px;
+}
+
+/* Event Container */
+.event-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Event Header */
+.event-header {
     text-align: center;
 }
 
-.description {
-    font-size: 1.1em;
-    color: #555;
-    text-align: justify;
+.event-header img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Event Content Layout */
+.event-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* Text Content - Left Side */
+.event-details {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Image - Right Side */
+.event-image {
+    max-width: 250px;
+}
+
+.event-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Event Title */
+.event-details h1 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #575C89;
+    /* Deep blue shade */
+}
+
+/* Event Details */
+.event-details p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.event-details strong {
+    font-weight: bold;
+    color: #444;
 }
 
 /* Speaker Section */
+.speaker-section {
+    margin-top: 30px;
+}
+
+.speaker-section h2 {
+    text-align: left;
+    color: #575C89;
+    margin-bottom: 10px;
+}
+
+
+/* Speaker Cards */
+.speaker-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 15px;
+}
+
 .speaker-card {
     display: flex;
     align-items: center;
-    background: #f9f9f9;
+    background: #d0d6f0;
+    /* Light blue */
     padding: 15px;
-    border-radius: 8px;
-    margin-top: 10px;
-    text-align: left;
+    border-radius: 12px;
+    width: 280px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .speaker-card img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    margin-right: 15px;
     object-fit: cover;
+    margin-right: 15px;
+    border: 3px solid #7886C7;
+    /* Blue border */
 }
 
 .speaker-info h3 {
+    font-size: 18px;
+    color: #222;
     margin: 0;
-    color: #333;
 }
 
-/* Registered Users */
-.registered-users-count {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #007bff;
-}
-
-/* Register Button */
+/* Registration Button */
 .register-btn {
     display: block;
     width: 100%;
-    background: #28a745;
+    max-width: 300px;
+    margin: 20px auto 0;
+    padding: 12px;
+    background: #9789B5;
+    /* Purple shade */
     color: white;
-    padding: 10px;
-    font-size: 1em;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
-    margin-top: 15px;
+    font-size: 16px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
+        -5px -5px 10px rgba(255, 255, 255, 0.8);
 }
 
 .register-btn:hover {
-    background: #218838;
+    background: #4c214f;
+    /* Darker purple */
 }
 
-.registered-message {
-    color: #007bff;
+/* Back Button */
+.back-button {
+    width: 18%;
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 15px;
+    background-color: #9789B5;
+    /* Deep blue */
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
     font-weight: bold;
-    text-align: center;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #4c214f;
+    /* Darker blue */
 }
