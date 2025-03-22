@@ -18,97 +18,106 @@
     <% include ./header.ejs %>
   </header>
 
-  <form action="/events/create" method="POST" enctype="multipart/form-data">
+  <div class="container">
+    <h1 class="page-title">Create Event</h1>
 
-    <!-- Event Details -->
-    <div class="section">
-      <h3>Event Details</h3>
-      <label>Event Name:</label>
-      <input type="text" name="name" placeholder="Enter event name" required />
+    <form action="/events/create" method="POST" enctype="multipart/form-data" class="event-form">
+      <!-- Event Details Section -->
+      <div class="section event-details">
+        <h3 class="section-title">Event Details</h3>
 
-      <label>Event Poster:</label>
-      <div class="file-upload" onclick="document.getElementById('posterInput').click()">
-        <img src="/uploads/icons/folder-upload.png" alt="Upload Icon" class="upload-icon">
-        <p>Drag and drop image, or <span>click to browse</span></p>
+        <label for="name">Event Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter event name" required />
+
+        <label for="poster">Event Poster:</label>
+        <div class="file-upload" onclick="document.getElementById('posterInput').click()">
+          <img src="/uploads/icons/folder-upload.png" alt="Upload Icon" class="upload-icon">
+          <p>Drag and drop image, or <span>click to browse</span></p>
+        </div>
+        <input type="file" id="posterInput" name="poster" accept="image/*" required
+          onchange="updateFileName('posterInput', 'posterFileName')">
+        <p id="posterFileName"></p>
+
+        <label for="shortDescription">Short Description:</label>
+        <textarea id="shortDescription" name="shortDescription"
+          placeholder="Brief overview of the event (100-150 words)" required></textarea>
+
+        <label for="longDescription">Long Description:</label>
+        <textarea id="longDescription" name="longDescription"
+          placeholder="Detailed event explanation, agenda, and highlights" required></textarea>
       </div>
-      <input type="file" id="posterInput" name="poster" accept="image/*" required
-        onchange="updateFileName('posterInput', 'posterFileName')">
-      <p id="posterFileName"></p>
 
-      <label>Short Description:</label>
-      <textarea name="shortDescription" placeholder="Brief overview of the event (100-150 words)" required></textarea>
+      <!-- Event Schedule & Venue Section -->
+      <div class="section event-schedule-venue">
+        <h3 class="section-title">Event Schedule & Venue</h3>
 
-      <label>Long Description:</label>
-      <textarea name="longDescription" placeholder="Detailed event explanation, agenda, and highlights"
-        required></textarea>
-    </div>
+        <label for="eventDate">Event Date:</label>
+        <input type="date" id="eventDate" name="eventDate" required />
 
-    <!-- Event Schedule & Venue -->
-    <div class="section">
-      <h3>Event Schedule and Venue</h3>
-      <label>Event Date:</label>
-      <input type="date" name="eventDate" required />
+        <label for="startTime">Start Time:</label>
+        <input type="time" id="startTime" name="startTime" required />
 
-      <label>Start Time:</label>
-      <input type="time" name="startTime" required />
+        <label for="endTime">End Time:</label>
+        <input type="time" id="endTime" name="endTime" required />
 
-      <label>End Time:</label>
-      <input type="time" name="endTime" required />
+        <label for="duration">Duration (in hours):</label>
+        <input type="number" id="duration" name="duration" placeholder="e.g., 3" required />
 
-      <label>Duration (in hours):</label>
-      <input type="number" name="duration" placeholder="3" required />
+        <label for="venue">Venue:</label>
+        <input type="text" id="venue" name="venue" placeholder="Physical location or online event link" required />
 
-      <label>Venue:</label>
-      <input type="text" name="venue" placeholder="Physical location or online event link" required />
-
-      <label>Event Capacity:</label>
-      <input type="number" name="capacity" placeholder="e.g., 100" required />
-    </div>
-
-    <!-- Payment Details -->
-    <div class="section">
-      <h3>Event Payment</h3>
-      <label>Is this event paid?</label>
-      <select name="isPaid" id="isPaid">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
-      <div id="feeAmountField" style="display: none;">
-        <label>Fee Amount:</label>
-        <input type="number" name="feeAmount" placeholder="Enter fee amount (if paid)" />
+        <label for="capacity">Event Capacity:</label>
+        <input type="number" id="capacity" name="capacity" placeholder="e.g., 100" required />
       </div>
-    </div>
 
-    <!-- Speaker Details -->
-    <div class="section">
-      <h3>Speakers</h3>
-      <div id="speakerContainer">
-        <div class="speaker">
-          <label>Speaker Name:</label>
-          <input type="text" name="speakerName[]" placeholder="Enter speaker name" required />
+      <!-- Event Payment Section -->
+      <div class="section event-payment">
+        <h3 class="section-title">Event Payment</h3>
 
-          <label>Speaker Description:</label>
-          <textarea name="speakerDescription[]" placeholder="Brief bio or achievements" required></textarea>
+        <label for="isPaid">Is this event paid?</label>
+        <select name="isPaid" id="isPaid">
+          <option value="false">No</option>
+          <option value="true">Yes</option>
+        </select>
 
-          <label>Speaker Profile Photo:</label>
-          <div class="file-upload" onclick="document.getElementById('speakerInput0').click()">
-            <img src="/uploads/icons/folder-upload.png" alt="Upload Icon" class="upload-icon">
-            <p>Drag and drop image, or <span>click to browse</span></p>
-          </div>
-          <input type="file" id="speakerInput0" name="speakerProfile[]" accept="image/*" required
-            onchange="updateFileName('speakerInput0', 'speakerFileName0')">
-          <p id="speakerFileName0"></p>
+        <div id="feeAmountField" class="fee-amount-field" style="display: none;">
+          <label for="feeAmount">Fee Amount:</label>
+          <input type="number" id="feeAmount" name="feeAmount" placeholder="Enter fee amount (if paid)" />
         </div>
       </div>
-      <button type="button" onclick="addSpeaker()">Add Another Speaker</button>
-    </div>
 
-    <button type="submit">Create Event</button>
-  </form>
+      <!-- Speaker Details Section -->
+      <div class="section speakers">
+        <h3 class="section-title">Speakers</h3>
+        <div id="speakerContainer">
+          <div class="speaker">
+            <label for="speakerName0">Speaker Name:</label>
+            <input type="text" id="speakerName0" name="speakerName[]" placeholder="Enter speaker name" required />
+
+            <label for="speakerDescription0">Speaker Description:</label>
+            <textarea id="speakerDescription0" name="speakerDescription[]" placeholder="Brief bio or achievements"
+              required></textarea>
+
+            <label for="speakerProfile0">Speaker Profile Photo:</label>
+            <div class="file-upload" onclick="document.getElementById('speakerInput0').click()">
+              <img src="/uploads/icons/folder-upload.png" alt="Upload Icon" class="upload-icon">
+              <p>Drag and drop image, or <span>click to browse</span></p>
+            </div>
+            <input type="file" id="speakerInput0" name="speakerProfile[]" accept="image/*" required
+              onchange="updateFileName('speakerInput0', 'speakerFileName0')">
+            <p id="speakerFileName0"></p>
+          </div>
+        </div>
+        <button type="button" class="add-speaker-btn" onclick="addSpeaker()">Add Another Speaker</button>
+      </div>
+
+      <button type="submit" class="submit-btn">Create Event</button>
+    </form>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Custom Time Picker
+      // Flatpickr for time selection
       flatpickr("input[type='time']", {
         enableTime: true,
         noCalendar: true,
@@ -117,7 +126,7 @@
         disableMobile: "true"
       });
 
-      // Toggle fee amount field based on "Is Paid" selection
+      // Show/Hide fee amount field based on "Is Paid" selection
       document.getElementById("isPaid").addEventListener("change", function () {
         document.getElementById("feeAmountField").style.display = this.value === "true" ? "block" : "none";
       });
@@ -139,13 +148,13 @@
       speakerDiv.classList.add("speaker");
 
       speakerDiv.innerHTML = `
-        <label>Speaker Name:</label>
-        <input type="text" name="speakerName[]" required />
+        <label for="speakerName${speakerIndex}">Speaker Name:</label>
+        <input type="text" id="speakerName${speakerIndex}" name="speakerName[]" required />
 
-        <label>Speaker Description:</label>
-        <textarea name="speakerDescription[]" required></textarea>
+        <label for="speakerDescription${speakerIndex}">Speaker Description:</label>
+        <textarea id="speakerDescription${speakerIndex}" name="speakerDescription[]" required></textarea>
 
-        <label>Speaker Profile Photo:</label>
+        <label for="speakerProfile${speakerIndex}">Speaker Profile Photo:</label>
         <div class="file-upload" onclick="document.getElementById('speakerInput${speakerIndex}').click()">
           <img src="/uploads/icons/folder-upload.png" alt="Upload Icon" class="upload-icon">
           <p>Drag and drop image, or <span>click to browse</span></p>
@@ -158,7 +167,6 @@
       speakerIndex++;
     }
   </script>
-
 </body>
 
 </html>

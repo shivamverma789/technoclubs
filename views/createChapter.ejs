@@ -4,63 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Chapter</title>
+    <link rel="stylesheet" href="/stylesheets/createChapter.css">
 </head>
 
 <body>
+
     <!-- Header -->
     <header>
         <% include ./header.ejs %>
     </header>
 
-    <form action="/chapters/create" method="POST" enctype="multipart/form-data">
-        <label for="name">Chapter Name:</label>
-        <input type="text" name="name" required>
+    <div class="container">
+        <h2>Create a New Chapter</h2>
 
-        <label for="description">Description:</label>
-        <textarea name="description" required></textarea>
+        <form action="/chapters/create" method="POST" enctype="multipart/form-data" class="form-container">
 
-        <label for="president">President:</label>
-        <select name="president" required>
-            <% users.forEach(user=> { %>
-                <option value="<%= user._id %>">
-                    <%= user.name %>
-                </option>
-                <% }); %>
-        </select>
+            <!-- Chapter Name -->
+            <label for="name">Chapter Name:</label>
+            <input type="text" name="name" placeholder="Enter chapter name" required>
 
-        <label for="vicePresident">Vice President:</label>
-        <select name="vicePresident" required>
-            <% users.forEach(user=> { %>
-                <option value="<%= user._id %>">
-                    <%= user.name %>
-                </option>
-                <% }); %>
-        </select>
+            <!-- Description -->
+            <label for="description">Description:</label>
+            <textarea name="description" placeholder="Enter chapter description" required></textarea>
 
-        <label for="coordinator">Coordinator:</label>
-        <select name="coordinator" required>
-            <% users.forEach(user=> { %>
-                <option value="<%= user._id %>">
-                    <%= user.name %>
-                </option>
-                <% }); %>
-        </select>
+            <!-- President -->
+            <label for="president">President:</label>
+            <select name="president" required>
+                <% users.forEach(user=> { %>
+                    <option value="<%= user._id %>">
+                        <%= user.name %>
+                    </option>
+                    <% }); %>
+            </select>
 
-        <label for="admin">Admin:</label>
-        <select name="admin" required>
-            <% users.forEach(user=> { %>
-                <option value="<%= user._id %>">
-                    <%= user.name %>
-                </option>
-                <% }); %>
-        </select>
+            <!-- Vice President -->
+            <label for="vicePresident">Vice President:</label>
+            <select name="vicePresident" required>
+                <% users.forEach(user=> { %>
+                    <option value="<%= user._id %>">
+                        <%= user.name %>
+                    </option>
+                    <% }); %>
+            </select>
 
-        <label for="profileImage">Upload Profile Image:</label>
-        <input type="file" name="profileImage" accept="image/*">
+            <!-- Coordinator -->
+            <label for="coordinator">Coordinator:</label>
+            <select name="coordinator" required>
+                <% users.forEach(user=> { %>
+                    <option value="<%= user._id %>">
+                        <%= user.name %>
+                    </option>
+                    <% }); %>
+            </select>
 
-        <button type="submit">Create Chapter</button>
-    </form>
+            <!-- Admin -->
+            <label for="admin">Admin:</label>
+            <select name="admin" required>
+                <% users.forEach(user=> { %>
+                    <option value="<%= user._id %>">
+                        <%= user.name %>
+                    </option>
+                    <% }); %>
+            </select>
+
+            <!-- Upload Profile Image -->
+            <label for="profileImage">Upload Profile Image:</label>
+            <input type="file" name="profileImage" accept="image/*">
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-gradient">Create Chapter</button>
+        </form>
+    </div>
 
 </body>
 

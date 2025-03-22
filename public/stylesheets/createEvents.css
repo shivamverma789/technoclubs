@@ -1,172 +1,207 @@
-/* General Styling */
+/* Root Color Variables */
+:root {
+    --primary-bg: #0B0F1C;
+    --secondary-bg: #111827;
+    --text-light: #F3F4F6;
+    --text-muted: #9CA3AF;
+    --highlight: #3B82F6;
+    --accent: #FACC15;
+    --error: #EF4444;
+    --gradient-bg: linear-gradient(145deg, #3B82F6, #8B5CF6);
+    --button-bg: linear-gradient(145deg, #FACC15, #FFD700);
+    --card-bg: linear-gradient(145deg, #1E293B, #111827);
+    --shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f6f5e6;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    min-height: 100vh;
     padding: 20px;
 }
 
-/* Form Styling */
-form {
-    width: 60%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Section Styling */
-.section {
-    background: #A9B5DF;
-    padding: 20px;
-    border-radius: 15px;
+.container {
+    margin-top: 100px;
+    max-width: 1200px;
     width: 100%;
-    box-sizing: border-box;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
 }
 
-/* Section Titles */
-.section h3 {
-    text-align: center;
-    color: #333;
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-/* Input Fields */
-input,
-textarea,
+/* Event Payment Dropdown Styles */
 select {
     width: 100%;
     padding: 12px;
-    border: none;
-    border-radius: 15px;
-    font-size: 16px;
-    background: #FFFFFF;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-light);
+    background-color: var(--secondary-bg);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Change border color on focus */
+select:focus {
+    border-color: var(--highlight);
+    background-color: var(--secondary-bg);
     outline: none;
-    display: block;
-    margin-top: 5px;
-    box-sizing: border-box;
-
 }
 
-input::placeholder,
-textarea::placeholder,
-select::placeholder {
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    color: #777;
-    opacity: 1;
-}
-
-/* Labels */
-label {
-    font-weight: bold;
-    color: #333;
-    margin-top: 10px;
-    display: block;
-}
-
-/* Buttons */
-button {
-    width: 100%;
+/* Dropdown Options Styling */
+select option {
+    background-color: var(--secondary-bg);
+    color: var(--text-light);
     padding: 12px;
-    margin-top: 20px;
-    background: #9789B5;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-button:hover {
-    background: #4c214f;
+/* Hover Effects */
+select:hover {
+    background-color: var(--secondary-bg);
+    border-color: var(--highlight);
 }
 
-/* Custom File Upload Box */
-.file-upload {
-    width: 100%;
-    max-width: 100%;
-    padding: 20px;
-    border: 2px dashed #777;
-    border-radius: 10px;
-    text-align: center;
-    background: #f9f9f9;
-    cursor: pointer;
-    position: relative;
-    box-sizing: border-box;
-}
-
-.file-upload:hover {
-    background: #ececec;
-}
-
-/* Upload Icon */
-.upload-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
-    opacity: 60%;
-}
-
-/* Placeholder Text */
-.file-upload p {
-    margin: 0;
-    font-size: 14px;
-    color: #555;
-}
-
-.file-upload span {
-    font-weight: bold;
-    color: #4c214f;
-}
-
-/* Hide the default file input */
-input[type="file"] {
+/* Custom Dropdown Arrow */
+select::-ms-expand {
     display: none;
 }
 
-/* Display Selected File Name */
-#fileName {
-    font-size: 14px;
-    color: #333;
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%239CA3AF' d='M7 9L3 5h8L7 9z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
+    padding-right: 30px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Form Styles */
+.event-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+label {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-light);
+    background-color: var(--secondary-bg);
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background: var(--button-bg);
+    color: var(--text-light);
+    font-size: 1.1rem;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: var(--highlight);
+}
+
+.file-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed var(--text-muted);
+    padding: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+}
+
+.file-upload img {
+    max-width: 30px;
+    margin-right: 10px;
+}
+
+.file-upload p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.add-speaker-btn {
+    background: var(--highlight);
+    color: var(--text-light);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.add-speaker-btn:hover {
+    background: var(--accent);
+}
+
+.fee-amount-field {
     margin-top: 10px;
 }
 
-/* Date Input Field Styling */
-input[type="date"] {
-    color: #333;
-    /* Match text color */
-    font-size: 16px;
-    font-family: 'Arial', sans-serif;
-    width: 100%;
-    padding: 12px;
+.submit-btn {
+    background: var(--highlight);
+    padding: 15px;
+    font-size: 1.2rem;
     border: none;
-    border-radius: 15px;
-    background: #FFFFFF;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-    outline: none;
-    display: block;
-    margin-top: 5px;
-    box-sizing: border-box;
-    appearance: none;
-    /* Removes default browser styling */
-}
-
-/* Placeholder & Selected Date Text Color */
-input[type="date"]::placeholder {
-    color: #777;
-    /* Same as other placeholders */
-    opacity: 1;
-}
-
-/* Override default styles on some browsers */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.5);
-    /* Adjusts icon color */
+    border-radius: 8px;
+    width: 100%;
     cursor: pointer;
+    text-transform: uppercase;
+}
+
+.submit-btn:hover {
+    background: var(--accent);
 }

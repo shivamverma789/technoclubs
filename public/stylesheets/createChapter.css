@@ -1,68 +1,167 @@
+/* Theme Variables */
+:root {
+  --primary-bg: #0B0F1C !important;
+  --secondary-bg: #111827 !important;
+  --text-light: #F3F4F6 !important;
+  --text-muted: #9CA3AF !important;
+  --highlight: #3B82F6 !important;
+  --accent: #FACC15 !important;
+  --gradient-bg: linear-gradient(145deg, #3B82F6, #8B5CF6) !important;
+  --button-bg: linear-gradient(145deg, #FACC15, #FFD700) !important;
+  --card-bg: linear-gradient(145deg, #1E293B, #111827) !important;
+  --shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f6f5e6;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-light);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Header */
+header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Container for the form */
 .container {
-  background: #A9B5DF;
-  /* Background with 20% opacity */
-  padding: 40px;
-  width: 450px;
-  border-radius: 20px;
+  margin-top: 60px !important;
+  padding: 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: var(--shadow);
+  background-color: var(--secondary-bg);
+  /* Subtle background color */
   text-align: center;
 }
 
+/* Title */
 h2 {
-  color: #333;
-  font-size: 24px;
+  font-size: 2rem;
+  color: var(--text-light);
   margin-bottom: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--highlight);
+  padding-bottom: 10px;
+  display: inline-block;
+  margin-bottom: 30px;
 }
 
-.form-group {
+/* Form Styling */
+.form-container {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  margin: 15px 0;
-}
-
-label {
-  font-weight: bold;
-  color: #222;
-  margin-bottom: 5px;
+  gap: 20px;
   text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-input,
+/* Labels */
+label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+/* Input Fields */
+input[type="text"],
+textarea,
 select,
-textarea {
-  width: calc(100% - 24px);
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: #FFFFFF;
-  font-size: 16px;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-  outline: none;
-  display: block;
-}
-
-button {
+input[type="file"] {
   width: 100%;
-  padding: 12px;
-  margin-top: 20px;
-  background: #9789B5;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--text-muted);
+  background-color: var(--secondary-bg);
+  color: var(--text-light);
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background: #4c214f;
+/* Focused State for Inputs */
+input[type="text"]:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus {
+  border-color: var(--highlight);
+  outline: none;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+/* File Input */
+input[type="file"] {
+  padding: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+/* Button */
+.btn-gradient {
+  background: var(--button-bg);
+  color: var(--primary-bg);
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Button Hover State */
+.btn-gradient:hover {
+  background: var(--highlight);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Select Dropdowns */
+select {
+  background-color: var(--secondary-bg);
+  color: var(--text-light);
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--text-muted);
+  font-size: 1rem;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
 }

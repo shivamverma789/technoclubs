@@ -70,7 +70,8 @@ header {
 
 /* ✅ LOGO */
 .logo img {
-    width: 140px;
+    border-radius: 100%;
+    width: 60px;
     height: auto;
     object-fit: contain;
     display: block;
@@ -349,4 +350,18 @@ nav {
     font-size: 16px;
     font-weight: 500;
     color: var(--text-muted);
+}
+
+.icon-link i {
+    color: white !important;
+    /* Force white color */
+    font-size: 1.2rem;
+    /* Adjust size */
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.icon-link i:hover {
+    color: var(--highlight);
+    /* Change to highlight color on hover */
+    transform: scale(1.1);
 }

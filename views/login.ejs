@@ -6,19 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="/stylesheets/login.css">
-
 </head>
 
 <body>
-    <div class="login-card">
-        <h2>Login</h2>
-        <form action="/auth/login" method="POST">
-            <input type="email" name="email" placeholder="User name" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <button type="submit">Login</button>
-        </form>
+    <div class="login-wrapper">
+        <!-- Welcome Heading -->
+        <h1 class="welcome-heading">Welcome to Techno Clubs</h1>
+
+        <div class="login-card">
+            <h2>Login</h2>
+            <form action="/auth/login" method="POST">
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email" required />
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Password" required />
+                </div>
+                <button type="submit" class="btn-gradient">Login</button>
+            </form>
+        </div>
     </div>
 </body>
-
 
 </html>
