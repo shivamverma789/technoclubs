@@ -59,7 +59,7 @@
       <div class="events-container" id="past-events" style="display: none;">
         <% if (pastEvents.length> 0) { %>
           <% pastEvents.forEach(event=> { %>
-            <a href="/event/<%= event._id %>" class="event-card-link">
+            <a href="/events/<%= event._id %>" class="event-card-link">
               <div class="event-card">
                 <img src="/uploads/eventPosters/<%= event.poster %>" alt="<%= event.name %>" />
                 <h3>

@@ -3,38 +3,22 @@
 /* ============================= */
 :root {
     --primary-bg: #0B0F1C;
-    /* Deep Navy - Dark Background */
     --secondary-bg: #111827;
-    /* Slightly Lighter Dark */
     --text-light: #F3F4F6;
-    /* Light Gray - For Readability */
     --text-muted: #9CA3AF;
-    /* Muted Gray - Secondary Text */
     --highlight: #3B82F6;
-    /* Electric Blue - Primary Accent */
     --accent: #FACC15;
-    /* Neon Yellow - Call to Actions */
     --error: #EF4444;
-    /* Vibrant Red - Alerts & Errors */
-
     --gradient-bg: linear-gradient(145deg, #3B82F6, #8B5CF6);
-    /* Blue to Violet */
     --gradient-highlight: linear-gradient(145deg, #14B8A6, #22D3EE);
-    /* Teal to Cyan */
-
     --button-bg: linear-gradient(145deg, #FACC15, #FFD700);
-    /* Neon Yellow for Buttons */
     --card-bg: linear-gradient(145deg, #1E293B, #111827);
-    /* Dark Gradient for Cards */
-
     --shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-    /* Neon Blue Glow */
     --text-shadow: 0 0 5px rgba(59, 130, 246, 0.8);
-    /* Neon Text Effect */
 }
 
 /* ============================= */
-/* ✨ General Styles */
+/* 🌑 Global Styles */
 /* ============================= */
 body {
     font-family: 'Arial', sans-serif;
@@ -42,10 +26,12 @@ body {
     color: var(--text-light);
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* ============================= */
-/* 🚀 DARK THEME HEADER (FULLY FIXED) */
+/* 🚀 Header (Fixed Navigation) */
 /* ============================= */
 header {
     width: 100%;
@@ -60,15 +46,7 @@ header {
     z-index: 1000;
 }
 
-/* ✅ HEADER CONTAINER */
-.header-container {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    gap: 300px;
-}
-
-/* ✅ LOGO */
+/* ✅ Header Logo */
 .logo img {
     border-radius: 100%;
     width: 60px;
@@ -77,14 +55,7 @@ header {
     display: block;
 }
 
-/* ✅ NAVIGATION */
-nav {
-    gap: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-/* ✅ NAVIGATION LINKS */
+/* ✅ Navigation Links */
 .nav-links {
     list-style: none;
     display: flex;
@@ -107,13 +78,7 @@ nav {
     text-decoration: underline;
 }
 
-/* ✅ HEADER ICONS */
-.header-icons {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
+/* ✅ Header Icons */
 .header-icons img {
     width: 26px;
     height: 26px;
@@ -127,7 +92,7 @@ nav {
     transform: scale(1.1);
 }
 
-/* ✅ USER PROFILE ICON */
+/* ✅ User Profile Icon */
 .user-icon {
     width: 35px;
     height: 35px;
@@ -142,31 +107,14 @@ nav {
     transform: scale(1.1);
 }
 
-/* ✅ LOGIN BUTTON */
-.login-btn {
-    padding: 8px 15px;
-    background: var(--button-bg);
-    color: var(--secondary-bg);
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-}
-
-.login-btn:hover {
-    background: var(--accent);
-    transform: scale(1.05);
-}
-
 /* ============================= */
-/* 🎯 Hero Section */
+/* 🌟 Hero Section */
 /* ============================= */
 .hero {
     width: 100%;
     height: 90vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 10%;
     background-color: var(--secondary-bg);
 }
@@ -194,10 +142,15 @@ nav {
     width: 100%;
     height: auto;
     border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
 }
 
 /* ============================= */
-/* 🔥 Our Community (Chapters) */
+/* 🎯 Community (Chapters) Section */
 /* ============================= */
 .chapters-section {
     background: var(--secondary-bg);
@@ -288,7 +241,7 @@ nav {
 }
 
 /* ============================= */
-/* 👥 Club Dynamics (Fixed) */
+/* 👥 Club Dynamics Section */
 /* ============================= */
 .club-dynamics {
     text-align: center;
@@ -302,7 +255,6 @@ nav {
     margin-bottom: 30px;
 }
 
-/* ✅ FLEX CONTAINER FOR MEMBERS */
 .cd-container {
     display: flex;
     justify-content: center;
@@ -311,7 +263,6 @@ nav {
     padding: 0 10%;
 }
 
-/* ✅ INDIVIDUAL MEMBER CARD */
 .cd-member {
     background: var(--card-bg);
     padding: 20px;
@@ -327,7 +278,6 @@ nav {
     box-shadow: 0px 6px 12px var(--highlight);
 }
 
-/* ✅ PROFILE IMAGE */
 .cd-member img {
     width: 120px;
     height: 120px;
@@ -337,7 +287,6 @@ nav {
     border: 3px solid var(--highlight);
 }
 
-/* ✅ MEMBER NAME */
 .cd-member .name {
     font-size: 18px;
     font-weight: bold;
@@ -345,23 +294,193 @@ nav {
     margin-bottom: 5px;
 }
 
-/* ✅ MEMBER TITLE */
 .cd-member .title {
     font-size: 16px;
     font-weight: 500;
     color: var(--text-muted);
 }
 
-.icon-link i {
-    color: white !important;
-    /* Force white color */
-    font-size: 1.2rem;
-    /* Adjust size */
-    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+/* ============================= */
+/* ✉️ Newsletter Section */
+/* ============================= */
+.newsletter-section {
+    background: var(--secondary-bg);
+    padding: 50px 0;
+    text-align: center;
 }
 
-.icon-link i:hover {
+.newsletter-section h2 {
+    font-size: 26px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.newsletter-section p {
+    color: var(--text-muted);
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    width: 300px;
+    font-size: 16px;
+    color: var(--text-light);
+    background-color: var(--secondary-bg);
+    box-shadow: var(--shadow);
+}
+
+.newsletter-form input::placeholder {
+    color: var(--text-muted);
+}
+
+.newsletter-form button {
+    padding: 12px 20px;
+    background: var(--button-bg);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.newsletter-form button:hover {
+    background: var(--highlight);
+}
+
+/* ============================= */
+/* ✅ Footer Section */
+/* ============================= */
+footer {
+    background: var(--secondary-bg);
+    padding: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ============================= */
+/* 🌟 Testimonials Section */
+/* ============================= */
+.testimonials-section {
+    background: var(--secondary-bg);
+    padding: 50px 0;
+    text-align: center;
+}
+
+.testimonials-section h2 {
+    font-size: 26px;
+    color: var(--text-light);
+    margin-bottom: 40px;
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 5%;
+}
+
+.testimonial-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px var(--highlight);
+}
+
+.testimonial-card .quote {
+    font-size: 22px;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.testimonial-card .author {
+    font-size: 18px;
+    font-weight: bold;
     color: var(--highlight);
-    /* Change to highlight color on hover */
-    transform: scale(1.1);
+    margin-bottom: 10px;
+}
+
+.testimonial-card .role {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.testimonial-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--highlight);
+}
+
+@media (max-width: 768px) {
+    .testimonials-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .testimonial-card {
+        width: 100%;
+        max-width: 350px;
+        padding: 20px;
+    }
+
+    .testimonial-card .quote {
+        font-size: 18px;
+    }
+}
+
+/* Remove highlight effect */
+.cta-btn {
+    background: var(--button-bg);
+    color: var(--secondary-bg);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    box-shadow: none;
+    /* Remove any shadow effect */
+}
+
+/* Hover effect without the highlight */
+.cta-btn:hover {
+    background: var(--highlight);
+    transform: scale(1.05);
+    box-shadow: none;
+    /* Remove any hover shadow effect */
+    text-decoration: none;
+    /* Remove underline or highlight on hover */
+}
+
+/* Focus state */
+.cta-btn:focus {
+    outline: none;
+    /* Remove outline or border */
 }
